@@ -1,6 +1,34 @@
 package com.ecwid;
 
-import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
+import com.ecwid.antlrparser.SqlBaseVisitor;
+import com.ecwid.antlrparser.SqlParser;
+import com.ecwid.query.Query;
 
-public class SqlQueryVisitor {
+public class SqlQueryVisitor extends SqlBaseVisitor<Query> {
+    @Override
+    public Query visitSelectStatement(SqlParser.SelectStatementContext ctx) {
+        Query query = new Query();
+
+        // Visit selectElements to get columns
+        visitSelectElements(ctx.selectElements(), query);
+
+        // Get table name from the FROM clause
+        String tableName = ctx.tableName().getText();
+        query.setTableName(tableName);
+
+        return query;
+    }
+
+
+
+    // Helper method to visit selectElements and extract columns
+    private void visitSelectElements(SqlParser.SelectElementsContext ctx, Query query) {
+        // Loop through each columnName in selectElements
+        for (SqlParser.ColumnNameContext columnCtx : ctx.columnName()) {
+            String columnName = columnCtx.getText();
+            query.addColumn(columnName);
+        }
+    }
+
+
 }
