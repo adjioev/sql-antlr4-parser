@@ -19,6 +19,7 @@ dependencies {
 
 
 generateGrammarSource {
+    arguments += ['-visitor', '-package', 'com.ecwid.antlrparser']
     outputDirectory = file("src/main/java/com/ecwid/antlrparser")
 }
 

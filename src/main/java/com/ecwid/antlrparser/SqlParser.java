@@ -1,7 +1,5 @@
 // Generated from Sql.g4 by ANTLR 4.5.3
-
-    package com.ecwid.antlrparser;
-
+package com.ecwid.antlrparser;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -103,6 +101,11 @@ public class SqlParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SqlListener ) ((SqlListener)listener).exitSelectStatement(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SqlVisitor ) return ((SqlVisitor<? extends T>)visitor).visitSelectStatement(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final SelectStatementContext selectStatement() throws RecognitionException {
@@ -161,6 +164,11 @@ public class SqlParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SqlListener ) ((SqlListener)listener).exitSelectElements(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SqlVisitor ) return ((SqlVisitor<? extends T>)visitor).visitSelectElements(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final SelectElementsContext selectElements() throws RecognitionException {
@@ -215,6 +223,11 @@ public class SqlParser extends Parser {
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SqlListener ) ((SqlListener)listener).exitColumnName(this);
 		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SqlVisitor ) return ((SqlVisitor<? extends T>)visitor).visitColumnName(this);
+			else return visitor.visitChildren(this);
+		}
 	}
 
 	public final ColumnNameContext columnName() throws RecognitionException {
@@ -251,6 +264,11 @@ public class SqlParser extends Parser {
 		@Override
 		public void exitRule(ParseTreeListener listener) {
 			if ( listener instanceof SqlListener ) ((SqlListener)listener).exitTableName(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof SqlVisitor ) return ((SqlVisitor<? extends T>)visitor).visitTableName(this);
+			else return visitor.visitChildren(this);
 		}
 	}
 

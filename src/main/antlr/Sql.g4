@@ -1,9 +1,5 @@
 grammar Sql;
 
-@header {
-    package com.ecwid.antlrparser;
-}
-
 selectStatement
     : SELECT selectElements FROM tableName ';'?
     ;
