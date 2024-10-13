@@ -1,0 +1,36 @@
+plugins {
+    id 'java'
+    id 'antlr'
+}
+
+group = 'com.ecwid'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    antlr "org.antlr:antlr4:4.5.3"
+    implementation 'org.antlr:antlr4-runtime:4.9.3'
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+}
+
+
+generateGrammarSource {
+    outputDirectory = file("src/main/java/com/ecwid/antlrparser")
+}
+
+
+sourceSets {
+    main {
+        java {
+            srcDirs += 'src/main/java'
+        }
+    }
+}
+
+test {
+    useJUnitPlatform()
+}
