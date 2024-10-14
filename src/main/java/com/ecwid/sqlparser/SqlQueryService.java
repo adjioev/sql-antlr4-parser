@@ -9,9 +9,8 @@ public class SqlQueryService {
 
     public Query getQueryFromSql(String sql) {
         SqlParser parser = SqlParserFactory.getParser(sql);
-        ParseTree tree = parser.selectStatement();
-
+        ParseTree tree = parser.statement();
         SqlQueryVisitor visitor = new SqlQueryVisitor();
-        return visitor.visitSelectStatement((SqlParser.SelectStatementContext) tree);
+        return visitor.visit(tree);
     }
 }

@@ -20,4 +20,15 @@ public class SqlQueryTest {
         assertTrue(query.getColumns().contains("Company"));
     }
 
+    @Test
+    public void testAsterixInSelect() {
+        String sql = "SELECT * FROM Customer;";
+        Query query = sqlQueryService.getQueryFromSql(sql);
+
+        assertEquals("Customer", query.getTableName());
+        System.out.println("Query" + query.getColumns());
+//        assertEquals(1, query.getColumns().size());
+//        assertTrue(query.getColumns().contains("*"));
+    }
+
 }

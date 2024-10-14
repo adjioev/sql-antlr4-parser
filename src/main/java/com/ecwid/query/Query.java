@@ -3,11 +3,20 @@ package com.ecwid.query;
 import java.util.ArrayList;
 import java.util.List;
 
+//class Query {
+//    private List<String> columns; - need support for *
+//    private List<Source> fromSources;
+//    private List<Join> joins;
+//    private List<WhereClause> whereClauses;
+//    private List<String> groupByColumns;
+//    private List<Sort> sortColumns;
+//    private Integer limit;
+//    private Integer offset;
+//}
 public class Query {
-    private String tableName;
-
     private final List<String> columns = new ArrayList<>();
 
+    private String tableName;
 
     public List<String> getColumns() {
         return columns;

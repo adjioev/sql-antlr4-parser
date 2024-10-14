@@ -6,7 +6,7 @@ import com.ecwid.query.Query;
 
 public class SqlQueryVisitor extends SqlBaseVisitor<Query> {
     @Override
-    public Query visitSelectStatement(SqlParser.SelectStatementContext ctx) {
+    public Query visitSelect(SqlParser.SelectContext ctx) {
         Query query = new Query();
 
         // Visit selectElements to get columns

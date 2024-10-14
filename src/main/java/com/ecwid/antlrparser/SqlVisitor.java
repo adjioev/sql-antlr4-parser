@@ -11,11 +11,17 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface SqlVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#selectStatement}.
+	 * Visit a parse tree produced by {@link SqlParser#statement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSelectStatement(SqlParser.SelectStatementContext ctx);
+	T visitStatement(SqlParser.StatementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#select}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelect(SqlParser.SelectContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SqlParser#selectElements}.
 	 * @param ctx the parse tree

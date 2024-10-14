@@ -8,15 +8,25 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface SqlListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link SqlParser#selectStatement}.
+	 * Enter a parse tree produced by {@link SqlParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void enterSelectStatement(SqlParser.SelectStatementContext ctx);
+	void enterStatement(SqlParser.StatementContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SqlParser#selectStatement}.
+	 * Exit a parse tree produced by {@link SqlParser#statement}.
 	 * @param ctx the parse tree
 	 */
-	void exitSelectStatement(SqlParser.SelectStatementContext ctx);
+	void exitStatement(SqlParser.StatementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#select}.
+	 * @param ctx the parse tree
+	 */
+	void enterSelect(SqlParser.SelectContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#select}.
+	 * @param ctx the parse tree
+	 */
+	void exitSelect(SqlParser.SelectContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SqlParser#selectElements}.
 	 * @param ctx the parse tree

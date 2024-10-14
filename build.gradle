@@ -35,3 +35,10 @@ sourceSets {
 test {
     useJUnitPlatform()
 }
+
+// Custom task to regenerate ANTLR files
+tasks.register('rebuildAntlr') {
+    group = "build"
+    description = "Clean and regenerate ANTLR sources"
+    dependsOn 'cleanGenerateGrammarSource', 'generateGrammarSource'
+}

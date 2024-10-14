@@ -16,13 +16,25 @@ public class SqlBaseListener implements SqlListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSelectStatement(SqlParser.SelectStatementContext ctx) { }
+	@Override public void enterStatement(SqlParser.StatementContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSelectStatement(SqlParser.SelectStatementContext ctx) { }
+	@Override public void exitStatement(SqlParser.StatementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSelect(SqlParser.SelectContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSelect(SqlParser.SelectContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
