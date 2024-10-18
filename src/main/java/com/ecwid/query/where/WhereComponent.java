@@ -1,4 +1,4 @@
-package com.ecwid.query;
+package com.ecwid.query.where;
 
 public interface WhereComponent {
     String toString();

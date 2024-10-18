@@ -38,35 +38,159 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitSelectElements(SqlParser.SelectElementsContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SqlParser#whereExpression}.
+	 * Enter a parse tree produced by the {@code OrOperation}
+	 * labeled alternative in {@link SqlParser#orExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterWhereExpression(SqlParser.WhereExpressionContext ctx);
+	void enterOrOperation(SqlParser.OrOperationContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SqlParser#whereExpression}.
+	 * Exit a parse tree produced by the {@code OrOperation}
+	 * labeled alternative in {@link SqlParser#orExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitWhereExpression(SqlParser.WhereExpressionContext ctx);
+	void exitOrOperation(SqlParser.OrOperationContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SqlParser#whereClauses}.
+	 * Enter a parse tree produced by the {@code AndExpressionInOr}
+	 * labeled alternative in {@link SqlParser#orExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterWhereClauses(SqlParser.WhereClausesContext ctx);
+	void enterAndExpressionInOr(SqlParser.AndExpressionInOrContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SqlParser#whereClauses}.
+	 * Exit a parse tree produced by the {@code AndExpressionInOr}
+	 * labeled alternative in {@link SqlParser#orExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitWhereClauses(SqlParser.WhereClausesContext ctx);
+	void exitAndExpressionInOr(SqlParser.AndExpressionInOrContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SqlParser#whereClause}.
+	 * Enter a parse tree produced by the {@code UnaryExpressionInAnd}
+	 * labeled alternative in {@link SqlParser#andExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterWhereClause(SqlParser.WhereClauseContext ctx);
+	void enterUnaryExpressionInAnd(SqlParser.UnaryExpressionInAndContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SqlParser#whereClause}.
+	 * Exit a parse tree produced by the {@code UnaryExpressionInAnd}
+	 * labeled alternative in {@link SqlParser#andExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitWhereClause(SqlParser.WhereClauseContext ctx);
+	void exitUnaryExpressionInAnd(SqlParser.UnaryExpressionInAndContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code AndOperation}
+	 * labeled alternative in {@link SqlParser#andExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterAndOperation(SqlParser.AndOperationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code AndOperation}
+	 * labeled alternative in {@link SqlParser#andExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitAndOperation(SqlParser.AndOperationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NotOperation}
+	 * labeled alternative in {@link SqlParser#unaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNotOperation(SqlParser.NotOperationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NotOperation}
+	 * labeled alternative in {@link SqlParser#unaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNotOperation(SqlParser.NotOperationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code PrimaryExpr}
+	 * labeled alternative in {@link SqlParser#unaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterPrimaryExpr(SqlParser.PrimaryExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code PrimaryExpr}
+	 * labeled alternative in {@link SqlParser#unaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitPrimaryExpr(SqlParser.PrimaryExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NestedExpr}
+	 * labeled alternative in {@link SqlParser#primaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNestedExpr(SqlParser.NestedExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NestedExpr}
+	 * labeled alternative in {@link SqlParser#primaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNestedExpr(SqlParser.NestedExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SimpleCondition}
+	 * labeled alternative in {@link SqlParser#primaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterSimpleCondition(SqlParser.SimpleConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SimpleCondition}
+	 * labeled alternative in {@link SqlParser#primaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitSimpleCondition(SqlParser.SimpleConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ComparisonCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterComparisonCondition(SqlParser.ComparisonConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ComparisonCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitComparisonCondition(SqlParser.ComparisonConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code LikeCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterLikeCondition(SqlParser.LikeConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code LikeCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitLikeCondition(SqlParser.LikeConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code BetweenCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterBetweenCondition(SqlParser.BetweenConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BetweenCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitBetweenCondition(SqlParser.BetweenConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code InCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterInCondition(SqlParser.InConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code InCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitInCondition(SqlParser.InConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#whereValueList}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhereValueList(SqlParser.WhereValueListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#whereValueList}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhereValueList(SqlParser.WhereValueListContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SqlParser#columnName}.
 	 * @param ctx the parse tree

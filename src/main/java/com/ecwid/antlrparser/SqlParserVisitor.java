@@ -29,23 +29,95 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelectElements(SqlParser.SelectElementsContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#whereExpression}.
+	 * Visit a parse tree produced by the {@code OrOperation}
+	 * labeled alternative in {@link SqlParser#orExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitWhereExpression(SqlParser.WhereExpressionContext ctx);
+	T visitOrOperation(SqlParser.OrOperationContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#whereClauses}.
+	 * Visit a parse tree produced by the {@code AndExpressionInOr}
+	 * labeled alternative in {@link SqlParser#orExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitWhereClauses(SqlParser.WhereClausesContext ctx);
+	T visitAndExpressionInOr(SqlParser.AndExpressionInOrContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#whereClause}.
+	 * Visit a parse tree produced by the {@code UnaryExpressionInAnd}
+	 * labeled alternative in {@link SqlParser#andExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitWhereClause(SqlParser.WhereClauseContext ctx);
+	T visitUnaryExpressionInAnd(SqlParser.UnaryExpressionInAndContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code AndOperation}
+	 * labeled alternative in {@link SqlParser#andExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAndOperation(SqlParser.AndOperationContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NotOperation}
+	 * labeled alternative in {@link SqlParser#unaryExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNotOperation(SqlParser.NotOperationContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code PrimaryExpr}
+	 * labeled alternative in {@link SqlParser#unaryExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPrimaryExpr(SqlParser.PrimaryExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NestedExpr}
+	 * labeled alternative in {@link SqlParser#primaryExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNestedExpr(SqlParser.NestedExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SimpleCondition}
+	 * labeled alternative in {@link SqlParser#primaryExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSimpleCondition(SqlParser.SimpleConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ComparisonCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitComparisonCondition(SqlParser.ComparisonConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LikeCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLikeCondition(SqlParser.LikeConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BetweenCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBetweenCondition(SqlParser.BetweenConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code InCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInCondition(SqlParser.InConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#whereValueList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhereValueList(SqlParser.WhereValueListContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SqlParser#columnName}.
 	 * @param ctx the parse tree

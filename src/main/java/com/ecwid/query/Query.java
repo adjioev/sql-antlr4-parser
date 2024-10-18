@@ -1,5 +1,7 @@
 package com.ecwid.query;
 
+import com.ecwid.query.where.WhereComponent;
+
 import java.util.ArrayList;
 import java.util.List;
 
