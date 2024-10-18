@@ -11,6 +11,6 @@ public class SqlQueryService {
         SqlParser parser = SqlParserFactory.getParser(sql);
         ParseTree tree = parser.statement();
         SqlQueryVisitor visitor = new SqlQueryVisitor();
-        return visitor.visit(tree);
+        return (Query) visitor.visit(tree);
     }
 }

@@ -4,21 +4,22 @@ import com.ecwid.antlrparser.SqlParserBaseVisitor;
 import com.ecwid.antlrparser.SqlParser;
 import com.ecwid.query.*;
 
-public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
+import java.util.Arrays;
+
+public class SqlQueryVisitor extends SqlParserBaseVisitor<Object> {
     @Override
     public Query visitSelect(SqlParser.SelectContext ctx) {
         Query query = new Query();
 
         // Visit selectElements to get columns
         visitSelectElements(ctx.selectElements(), query);
-
-        // Visit whereExpression to get where clauses
-        visitWhereExpression(ctx.whereExpression(), query);
-
         // Get table name from the FROM clause
         String tableName = ctx.tableName().getText();
-        query.setTableName(tableName);
+        // Visit whereExpression to get where clauses
+        WhereComponent whereComponent = visitWhereExpression(ctx.whereExpression());
 
+        query.setTableName(tableName);
+        query.setWhereComponent(whereComponent);
         return query;
     }
 
@@ -31,30 +32,55 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
         }
     }
 
-    private void visitWhereExpression(SqlParser.WhereExpressionContext ctx, Query query) {
-        System.out.println("Visitning where expression" + ctx);
-        // add whereExpression
-        WhereExpression whereExpression = new WhereExpression();
-        for (SqlParser.WhereClausesContext expressionCtx : ctx.whereClauses()) {
-            visitWhereClauses(expressionCtx, whereExpression);
+    public WhereComponent visitWhereExpression(SqlParser.WhereExpressionContext ctx) {
+        // Visit the first whereClauses
+        WhereComponent left = (WhereComponent) visit(ctx.whereClauses(0));
+
+        // If there are more whereClauses connected by logical operators
+        for (int i = 1; i < ctx.whereClauses().size(); i++) {
+            String operator = ctx.logicalOperator(i - 1).getText().toUpperCase();
+            WhereComponent right = (WhereComponent) visit(ctx.whereClauses(i));
+
+            if (operator.equals("AND")) {
+                left = new AndCondition(Arrays.asList(left, right));
+            } else if (operator.equals("OR")) {
+                left = new OrCondition(Arrays.asList(left, right));
+            }
         }
-        query.setWhereExpression(whereExpression);
+        return left;
     }
 
-    private void visitWhereClauses(SqlParser.WhereClausesContext ctx, WhereExpression whereExpression) {
-        System.out.println("Visitning where clauses" + ctx);
-        WhereClauses whereClauses = new WhereClauses();
-        for (SqlParser.WhereClauseContext whereClauseCtx : ctx.whereClause()) {
-           WhereClause whereClause = visitWhereClause(whereClauseCtx,  null);
+
+    @Override
+    public WhereComponent visitWhereClauses(SqlParser.WhereClausesContext ctx) {
+        if (ctx.whereClause() != null && ctx.whereClause().size() > 0) {
+            // Multiple whereClauses connected by logical operators
+            WhereComponent left = (WhereComponent) visit(ctx.whereClause(0));
+
+            for (int i = 1; i < ctx.whereClause().size(); i++) {
+                String operator = ctx.logicalOperator(i - 1).getText().toUpperCase();
+                WhereComponent right = (WhereComponent) visit(ctx.whereClause(i));
+
+                if (operator.equals("AND")) {
+                    left = new AndCondition(Arrays.asList(left, right));
+                } else if (operator.equals("OR")) {
+                    left = new OrCondition(Arrays.asList(left, right));
+                }
+            }
+            return left;
+        } else if (ctx.whereExpression() != null) {
+            // It's a nested expression in parentheses
+            return (WhereComponent) visit(ctx.whereExpression());
+        } else {
+            // Should not reach here
+            return null;
         }
-        whereExpression.addWhereComponent(whereClause);
     }
-    private WhereComponent visitWhereClause(SqlParser.WhereClauseContext ctx, WhereExpression whereExpression) {
+
+    public WhereComponent visitWhereClause(SqlParser.WhereClauseContext ctx) {
         String column = ctx.IDENTIFIER().getText();
         String operator = ctx.COMP_OPERATOR().getText();
         Object value = ctx.whereValue().getText();
         return new WhereClause(column, operator, value);
     }
-
-
 }

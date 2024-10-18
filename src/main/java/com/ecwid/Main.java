@@ -1,16 +1,12 @@
 package com.ecwid;
 
 import com.ecwid.query.Query;
-import com.ecwid.query.WhereClause;
-import com.ecwid.query.WhereExpression;
 import com.ecwid.sqlparser.SqlQueryService;
-
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
-        String sql = "SELECT * FROM Students WHERE age > 30";
-//        String sql = "SELECT name, age FROM users WHERE (age > 30 AND status = 'active') OR role = 'admin'";
+//        String sql = "SELECT * FROM Students WHERE age > 30";
+        String sql = "SELECT name, age FROM users WHERE (age > 30 AND status = 'active') OR role = 'admin'";
 //        String sql = "SELECT * FROM Customer;";
 
         // Use the SqlQueryService to get a Query object
