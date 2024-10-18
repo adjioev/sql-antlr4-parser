@@ -1,3 +1,8 @@
+## TODO: 
+* Fix asterix in SELECT statement
+* 
+
+
 SQL query parser
 
 In SQL, the most syntactically complex and tricky query is probably the SELECT query. It has explicit and implicit joins, groupings,

@@ -27,8 +27,15 @@ public class SqlQueryTest {
 
         assertEquals("Customer", query.getTableName());
         System.out.println("Query" + query.getColumns());
-//        assertEquals(1, query.getColumns().size());
 //        assertTrue(query.getColumns().contains("*"));
     }
+
+    @Test
+    public void shouldHaveWhereClause() {
+        String sql = "SELECT * FROM WHERE age > 30;";
+        Query query = sqlQueryService.getQueryFromSql(sql);
+        assertEquals("Customer", query.getTableName());
+        System.out.println("Query" + query.getColumns());
+//        assertTrue(query.getColumns().contains("*"));
 
 }

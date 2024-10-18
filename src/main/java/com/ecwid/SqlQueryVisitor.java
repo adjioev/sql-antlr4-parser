@@ -1,10 +1,10 @@
 package com.ecwid;
 
-import com.ecwid.antlrparser.SqlBaseVisitor;
+import com.ecwid.antlrparser.SqlParserBaseVisitor;
 import com.ecwid.antlrparser.SqlParser;
 import com.ecwid.query.Query;
 
-public class SqlQueryVisitor extends SqlBaseVisitor<Query> {
+public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
     @Override
     public Query visitSelect(SqlParser.SelectContext ctx) {
         Query query = new Query();

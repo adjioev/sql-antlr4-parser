@@ -16,6 +16,8 @@ import java.util.List;
 public class Query {
     private final List<String> columns = new ArrayList<>();
 
+    private final List<WhereClause> whereClauses = new ArrayList<>();
+
     private String tableName;
 
     public List<String> getColumns() {
@@ -25,6 +27,16 @@ public class Query {
     public void addColumn(String column) {
         columns.add(column);
     }
+
+
+    public List<String> getWhereClauses() {
+        return columns;
+    }
+
+    public void addWhereClause(WhereClause whereClause) {
+        whereClauses.add(whereClause);
+    }
+
 
     public String getTableName() {
         return tableName;
