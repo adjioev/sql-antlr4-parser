@@ -23,10 +23,10 @@ public class SqlParser extends Parser {
 	public static final int
 		RULE_statement = 0, RULE_select = 1, RULE_selectElements = 2, RULE_whereExpression = 3, 
 		RULE_whereClauses = 4, RULE_whereClause = 5, RULE_columnName = 6, RULE_tableName = 7, 
-		RULE_logicalOperator = 8, RULE_value = 9;
+		RULE_logicalOperator = 8, RULE_whereValue = 9;
 	public static final String[] ruleNames = {
 		"statement", "select", "selectElements", "whereExpression", "whereClauses", 
-		"whereClause", "columnName", "tableName", "logicalOperator", "value"
+		"whereClause", "columnName", "tableName", "logicalOperator", "whereValue"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
@@ -457,8 +457,8 @@ public class SqlParser extends Parser {
 	public static class WhereClauseContext extends ParserRuleContext {
 		public TerminalNode IDENTIFIER() { return getToken(SqlParser.IDENTIFIER, 0); }
 		public TerminalNode COMP_OPERATOR() { return getToken(SqlParser.COMP_OPERATOR, 0); }
-		public ValueContext value() {
-			return getRuleContext(ValueContext.class,0);
+		public WhereValueContext whereValue() {
+			return getRuleContext(WhereValueContext.class,0);
 		}
 		public WhereClauseContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -490,7 +490,7 @@ public class SqlParser extends Parser {
 			setState(69);
 			match(COMP_OPERATOR);
 			setState(70);
-			value();
+			whereValue();
 			}
 		}
 		catch (RecognitionException re) {
@@ -637,32 +637,32 @@ public class SqlParser extends Parser {
 		return _localctx;
 	}
 
-	public static class ValueContext extends ParserRuleContext {
+	public static class WhereValueContext extends ParserRuleContext {
 		public TerminalNode NUMBER() { return getToken(SqlParser.NUMBER, 0); }
 		public TerminalNode IDENTIFIER() { return getToken(SqlParser.IDENTIFIER, 0); }
 		public TerminalNode STRING() { return getToken(SqlParser.STRING, 0); }
-		public ValueContext(ParserRuleContext parent, int invokingState) {
+		public WhereValueContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
-		@Override public int getRuleIndex() { return RULE_value; }
+		@Override public int getRuleIndex() { return RULE_whereValue; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterValue(this);
+			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).enterWhereValue(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitValue(this);
+			if ( listener instanceof SqlParserListener ) ((SqlParserListener)listener).exitWhereValue(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitValue(this);
+			if ( visitor instanceof SqlParserVisitor ) return ((SqlParserVisitor<? extends T>)visitor).visitWhereValue(this);
 			else return visitor.visitChildren(this);
 		}
 	}
 
-	public final ValueContext value() throws RecognitionException {
-		ValueContext _localctx = new ValueContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_value);
+	public final WhereValueContext whereValue() throws RecognitionException {
+		WhereValueContext _localctx = new WhereValueContext(_ctx, getState());
+		enterRule(_localctx, 18, RULE_whereValue);
 		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);

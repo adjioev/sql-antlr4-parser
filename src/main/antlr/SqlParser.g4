@@ -18,14 +18,14 @@ whereClauses
     | '(' whereExpression ')'  // Allow nesting of expressions inside parentheses
     ;
 
-whereClause : IDENTIFIER COMP_OPERATOR value;
+whereClause : IDENTIFIER COMP_OPERATOR whereValue;
 
 columnName : IDENTIFIER;
 
 tableName : IDENTIFIER;
 
 logicalOperator: AND | OR;
-value: NUMBER | IDENTIFIER | STRING;
+whereValue: NUMBER | IDENTIFIER | STRING;
 
 
 

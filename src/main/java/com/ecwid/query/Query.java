@@ -16,7 +16,7 @@ import java.util.List;
 public class Query {
     private final List<String> columns = new ArrayList<>();
 
-    private final List<WhereClause> whereClauses = new ArrayList<>();
+    private WhereExpression whereExpression;
 
     private String tableName;
 
@@ -28,15 +28,13 @@ public class Query {
         columns.add(column);
     }
 
-
-    public List<String> getWhereClauses() {
-        return columns;
+    public WhereExpression getWhereExpression() {
+        return whereExpression;
     }
 
-    public void addWhereClause(WhereClause whereClause) {
-        whereClauses.add(whereClause);
+    public void setWhereExpression(WhereExpression whereExpression) {
+        this.whereExpression = whereExpression;
     }
-
 
     public String getTableName() {
         return tableName;
@@ -47,7 +45,7 @@ public class Query {
     }
     @Override
     public String toString() {
-        return String.format("Query{columns=%s, tableName='%s'}", columns, tableName);
+        return String.format("Query{columns=%s, tableName='%s', Where='%s'}", columns, tableName, whereExpression);
     }
 
 

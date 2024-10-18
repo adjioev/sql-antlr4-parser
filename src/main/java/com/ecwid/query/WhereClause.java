@@ -1,8 +1,17 @@
 package com.ecwid.query;
 
-public class WhereClause {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class WhereClause implements WhereComponent {
     private String column;
     private String operator;
-    private Object argument;
-    private String logicaOperator; // AND, OR
+    private Object value;
+
+    @Override
+    public String toString() {
+        return column + " " + operator + " " + value;
+    }
 }
