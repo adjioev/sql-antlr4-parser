@@ -3,7 +3,7 @@ options {tokenVocab = SqlLexer;}
 
 statement
     : select
-    ; // TODO: insert, delete. e.c.
+    ; // TODO: insert, delete. e.c. Out of scope for this project
 
 select
     : SELECT selectElements FROM tableName (WHERE orExpression)? ';'?
@@ -11,14 +11,20 @@ select
 
 selectElements : ASTERIX | columnName (',' columnName)*;
 
-//whereExpression : whereClauses (logicalOperator whereClauses)*;
-//
-//whereClauses
-//    : whereClause (logicalOperator whereClause)*
-//    | '(' whereExpression ')'  // Allow nesting of expressions inside parentheses
-//    ;
+whereValueList : whereValue (',' whereValue)*;
+
+columnName : IDENTIFIER;
+
+tableName : IDENTIFIER;
+
+logicalOperator: AND | OR;
+whereValue: NUMBER | IDENTIFIER | STRING;
 
 
+// ------------------ WHERE Clause ------------------
+// Hiarchy - orExpression -> andExpression -> unaryExpression -> primaryExpression -> whereClause
+// This is done so that we can handle nested expressions and simple conditions
+// SQL has OR -> AND -> NOT precedence. so we need to handle that in the grammar
 
 // Handles OR operations
 orExpression
@@ -44,30 +50,15 @@ primaryExpression
     | whereClause                          # SimpleCondition
     ;
 
+// Simplest form of a condition, like
+// column_name = value
+// column_name LIKE value
+// column_name BETWEEN value AND value
+// column_name IN (value, value, ...)
+// TODO: replace IDENTIFIER with columnName?
 whereClause
     : IDENTIFIER COMP_OPERATOR whereValue            # ComparisonCondition
     | IDENTIFIER LIKE whereValue                     # LikeCondition
     | IDENTIFIER BETWEEN whereValue AND whereValue   # BetweenCondition
     | IDENTIFIER IN '(' whereValueList ')'           # InCondition
     ;
-
-whereValueList : whereValue (',' whereValue)*;
-
-columnName : IDENTIFIER;
-
-tableName : IDENTIFIER;
-
-logicalOperator: AND | OR;
-whereValue: NUMBER | IDENTIFIER | STRING;
-
-// age > 30 AND (department = 'Sales' OR (status = 'Active' AND city = 'New York'));
-// A AND (B OR (C AND D));
-
-// WHERE logic: whereClause -> whereClauses -> whereExpression
-
-//whereExpression : whereClauses (LOGICAL_OPERATOR whereClauses)*;
-//
-//whereClauses
-//    : whereClause (LOGICAL_OPERATOR whereClause)*
-//    | '(' whereExpression ')'  // Allow nesting of expressions inside parentheses
-//    ;
