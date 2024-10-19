@@ -6,19 +6,30 @@ statement
     ; // TODO: insert, delete. e.c. Out of scope for this project
 
 select
-    : SELECT selectElements FROM tableName (WHERE orExpression)? ';'?
+    :   SELECT selectElements
+        FROM tableName
+        (WHERE orExpression)?
+        (limitClause)?
+        (offsetClause)?
+        ';'?
     ;
 
-selectElements : ASTERIX | columnName (',' columnName)*;
+limitClause
+    : LIMIT NUMBER;
 
-whereValueList : whereValue (',' whereValue)*;
+offsetClause
+    : OFFSET NUMBER;
 
-columnName : IDENTIFIER;
+selectElements
+    : ASTERIX
+    | columnName (',' columnName)*;
+
+columnName
+    : IDENTIFIER ('.' IDENTIFIER)?;
 
 tableName : IDENTIFIER;
 
 logicalOperator: AND | OR;
-whereValue: NUMBER | IDENTIFIER | STRING;
 
 
 // ------------------ WHERE Clause ------------------
@@ -62,3 +73,7 @@ whereClause
     | IDENTIFIER BETWEEN whereValue AND whereValue   # BetweenCondition
     | IDENTIFIER IN '(' whereValueList ')'           # InCondition
     ;
+
+whereValue: NUMBER | IDENTIFIER | STRING;
+
+whereValueList : whereValue (',' whereValue)*;

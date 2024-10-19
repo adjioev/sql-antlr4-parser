@@ -1,6 +1,8 @@
 package com.ecwid.query;
 
 import com.ecwid.query.where.WhereComponent;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,39 +17,28 @@ import java.util.List;
 //    private Integer limit;
 //    private Integer offset;
 //}
+@Getter
 public class Query {
     private final List<String> columns = new ArrayList<>();
 
+    @Setter
     private WhereComponent whereComponent;
 
+    @Setter
     private String tableName;
 
-    public List<String> getColumns() {
-        return columns;
-    }
+    @Setter
+    private int limit;
+    @Setter
+    private int offset;
 
     public void addColumn(String column) {
         columns.add(column);
     }
 
-    public WhereComponent getWhereComponent() {
-        return whereComponent;
-    }
-
-    public void setWhereComponent(WhereComponent whereComponent) {
-        this.whereComponent = whereComponent;
-    }
-
-    public String getTableName() {
-        return tableName;
-    }
-
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
-    }
     @Override
     public String toString() {
-        return String.format("Query{columns=%s, tableName='%s', Where='%s'}", columns, tableName, whereComponent);
+        return String.format("Query{columns=%s, tableName='%s', Where='%s', Limit='%s', Offset='%s';}", columns, tableName, whereComponent, limit, offset);
     }
 
 

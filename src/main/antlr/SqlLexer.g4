@@ -9,6 +9,10 @@ LIKE: 'LIKE';
 IN: 'IN';
 AND: 'AND';
 OR: 'OR';
+NOT: 'NOT';
+LIMIT: 'LIMIT';
+OFFSET: 'OFFSET';
+
 
 LOGICAL_OPERATOR: AND | OR;
 
@@ -19,6 +23,7 @@ COMP_OPERATOR
 
 // Define the missing tokens for literals used in parser
 SEMICOLON: ';';
+DOT: '.';
 COMMA: ',';
 LPAREN: '(';
 RPAREN: ')';
@@ -26,8 +31,5 @@ RPAREN: ')';
 NUMBER: '-'? [0-9]+ ('.' [0-9]+)?;
 STRING: '\'' ~'\''* '\'';
 ASTERIX: '*';
-
-
-
 
 WS: [ \t\r\n]+ -> skip;

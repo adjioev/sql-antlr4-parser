@@ -23,11 +23,41 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelect(SqlParser.SelectContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SqlParser#limitClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLimitClause(SqlParser.LimitClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#offsetClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOffsetClause(SqlParser.OffsetClauseContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SqlParser#selectElements}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSelectElements(SqlParser.SelectElementsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#columnName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColumnName(SqlParser.ColumnNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#tableName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTableName(SqlParser.TableNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#logicalOperator}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLogicalOperator(SqlParser.LogicalOperatorContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code OrOperation}
 	 * labeled alternative in {@link SqlParser#orExpression}.
@@ -113,33 +143,15 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitInCondition(SqlParser.InConditionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#whereValueList}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitWhereValueList(SqlParser.WhereValueListContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SqlParser#columnName}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitColumnName(SqlParser.ColumnNameContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SqlParser#tableName}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTableName(SqlParser.TableNameContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SqlParser#logicalOperator}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLogicalOperator(SqlParser.LogicalOperatorContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link SqlParser#whereValue}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitWhereValue(SqlParser.WhereValueContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#whereValueList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhereValueList(SqlParser.WhereValueListContext ctx);
 }

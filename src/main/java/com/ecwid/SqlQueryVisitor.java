@@ -25,6 +25,14 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
             query.setWhereComponent(whereComponent);
         }
 
+        // Set LIMIT and OFFSET
+        if (ctx.limitClause() != null) {
+            query.setLimit(Integer.parseInt(ctx.limitClause().NUMBER().getText()));
+        }
+        if (ctx.offsetClause() != null) {
+            query.setOffset(Integer.parseInt(ctx.offsetClause().NUMBER().getText()));
+        }
+
         return query;
     }
 

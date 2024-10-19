@@ -28,6 +28,26 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitSelect(SqlParser.SelectContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SqlParser#limitClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterLimitClause(SqlParser.LimitClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#limitClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitLimitClause(SqlParser.LimitClauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#offsetClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterOffsetClause(SqlParser.OffsetClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#offsetClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitOffsetClause(SqlParser.OffsetClauseContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SqlParser#selectElements}.
 	 * @param ctx the parse tree
 	 */
@@ -37,6 +57,36 @@ public interface SqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSelectElements(SqlParser.SelectElementsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#columnName}.
+	 * @param ctx the parse tree
+	 */
+	void enterColumnName(SqlParser.ColumnNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#columnName}.
+	 * @param ctx the parse tree
+	 */
+	void exitColumnName(SqlParser.ColumnNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#tableName}.
+	 * @param ctx the parse tree
+	 */
+	void enterTableName(SqlParser.TableNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#tableName}.
+	 * @param ctx the parse tree
+	 */
+	void exitTableName(SqlParser.TableNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#logicalOperator}.
+	 * @param ctx the parse tree
+	 */
+	void enterLogicalOperator(SqlParser.LogicalOperatorContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#logicalOperator}.
+	 * @param ctx the parse tree
+	 */
+	void exitLogicalOperator(SqlParser.LogicalOperatorContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code OrOperation}
 	 * labeled alternative in {@link SqlParser#orExpression}.
@@ -182,46 +232,6 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitInCondition(SqlParser.InConditionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SqlParser#whereValueList}.
-	 * @param ctx the parse tree
-	 */
-	void enterWhereValueList(SqlParser.WhereValueListContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SqlParser#whereValueList}.
-	 * @param ctx the parse tree
-	 */
-	void exitWhereValueList(SqlParser.WhereValueListContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SqlParser#columnName}.
-	 * @param ctx the parse tree
-	 */
-	void enterColumnName(SqlParser.ColumnNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SqlParser#columnName}.
-	 * @param ctx the parse tree
-	 */
-	void exitColumnName(SqlParser.ColumnNameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SqlParser#tableName}.
-	 * @param ctx the parse tree
-	 */
-	void enterTableName(SqlParser.TableNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SqlParser#tableName}.
-	 * @param ctx the parse tree
-	 */
-	void exitTableName(SqlParser.TableNameContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SqlParser#logicalOperator}.
-	 * @param ctx the parse tree
-	 */
-	void enterLogicalOperator(SqlParser.LogicalOperatorContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SqlParser#logicalOperator}.
-	 * @param ctx the parse tree
-	 */
-	void exitLogicalOperator(SqlParser.LogicalOperatorContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link SqlParser#whereValue}.
 	 * @param ctx the parse tree
 	 */
@@ -231,4 +241,14 @@ public interface SqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitWhereValue(SqlParser.WhereValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#whereValueList}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhereValueList(SqlParser.WhereValueListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#whereValueList}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhereValueList(SqlParser.WhereValueListContext ctx);
 }
