@@ -1,26 +1,17 @@
 package com.ecwid.query.where;
 
+import lombok.Getter;
+
+@Getter
 public class BetweenCondition implements WhereComponent {
-    private String column;
-    private Object lowerBound;
-    private Object upperBound;
+    private final String column;
+    private final Object lowerBound;
+    private final Object upperBound;
 
     public BetweenCondition(String column, Object lowerBound, Object upperBound) {
         this.column = column;
         this.lowerBound = lowerBound;
         this.upperBound = upperBound;
-    }
-
-    public String getColumn() {
-        return column;
-    }
-
-    public Object getLowerBound() {
-        return lowerBound;
-    }
-
-    public Object getUpperBound() {
-        return upperBound;
     }
 
     @Override

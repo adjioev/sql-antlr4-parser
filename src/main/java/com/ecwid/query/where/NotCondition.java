@@ -1,14 +1,13 @@
 package com.ecwid.query.where;
 
+import lombok.Getter;
+
+@Getter
 public class NotCondition implements WhereComponent {
-    private WhereComponent condition;
+    private final WhereComponent condition;
 
     public NotCondition(WhereComponent condition) {
         this.condition = condition;
-    }
-
-    public WhereComponent getCondition() {
-        return condition;
     }
 
     @Override

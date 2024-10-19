@@ -1,20 +1,15 @@
 package com.ecwid.query.where;
 
+import lombok.Getter;
+
+@Getter
 public class LikeCondition implements WhereComponent {
-    private String column;
-    private String pattern;
+    private final String column;
+    private final String pattern;
 
     public LikeCondition(String column, Object pattern) {
         this.column = column;
         this.pattern = pattern.toString();
-    }
-
-    public String getColumn() {
-        return column;
-    }
-
-    public String getPattern() {
-        return pattern;
     }
 
     @Override
