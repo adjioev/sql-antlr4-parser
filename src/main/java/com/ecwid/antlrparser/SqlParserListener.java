@@ -28,26 +28,6 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitSelect(SqlParser.SelectContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SqlParser#limitClause}.
-	 * @param ctx the parse tree
-	 */
-	void enterLimitClause(SqlParser.LimitClauseContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SqlParser#limitClause}.
-	 * @param ctx the parse tree
-	 */
-	void exitLimitClause(SqlParser.LimitClauseContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SqlParser#offsetClause}.
-	 * @param ctx the parse tree
-	 */
-	void enterOffsetClause(SqlParser.OffsetClauseContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SqlParser#offsetClause}.
-	 * @param ctx the parse tree
-	 */
-	void exitOffsetClause(SqlParser.OffsetClauseContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link SqlParser#selectElements}.
 	 * @param ctx the parse tree
 	 */
@@ -251,4 +231,54 @@ public interface SqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitWhereValueList(SqlParser.WhereValueListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#orderByClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterOrderByClause(SqlParser.OrderByClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#orderByClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitOrderByClause(SqlParser.OrderByClauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#orderColumn}.
+	 * @param ctx the parse tree
+	 */
+	void enterOrderColumn(SqlParser.OrderColumnContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#orderColumn}.
+	 * @param ctx the parse tree
+	 */
+	void exitOrderColumn(SqlParser.OrderColumnContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#order}.
+	 * @param ctx the parse tree
+	 */
+	void enterOrder(SqlParser.OrderContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#order}.
+	 * @param ctx the parse tree
+	 */
+	void exitOrder(SqlParser.OrderContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#limitClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterLimitClause(SqlParser.LimitClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#limitClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitLimitClause(SqlParser.LimitClauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#offsetClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterOffsetClause(SqlParser.OffsetClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#offsetClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitOffsetClause(SqlParser.OffsetClauseContext ctx);
 }

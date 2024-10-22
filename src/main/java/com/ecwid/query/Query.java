@@ -28,7 +28,11 @@ public class Query {
     private String tableName;
 
     @Setter
+    private Sort sort;
+
+    @Setter
     private int limit;
+
     @Setter
     private int offset;
 
@@ -38,7 +42,18 @@ public class Query {
 
     @Override
     public String toString() {
-        return String.format("Query{columns=%s, tableName='%s', Where='%s', Limit='%s', Offset='%s';}", columns, tableName, whereComponent, limit, offset);
+        return String.format("""
+                        Query{
+                            columns='%s',
+                            tableName='%s',
+                            Where='%s',
+                            Sort='%s',
+                            Limit='%s',
+                            Offset='%s'
+                        }""",
+                columns, tableName, whereComponent, sort, limit, offset
+        );
+
     }
 
 

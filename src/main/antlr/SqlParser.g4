@@ -9,16 +9,11 @@ select
     :   SELECT selectElements
         FROM tableName
         (WHERE orExpression)?
+        (orderByClause)?
         (limitClause)?
         (offsetClause)?
         ';'?
     ;
-
-limitClause
-    : LIMIT NUMBER;
-
-offsetClause
-    : OFFSET NUMBER;
 
 selectElements
     : ASTERIX
@@ -33,8 +28,8 @@ logicalOperator: AND | OR;
 
 
 // ------------------ WHERE Clause ------------------
+// Just for fun, full-ish  implementation for SQL WHERE clause
 // Hiarchy - orExpression -> andExpression -> unaryExpression -> primaryExpression -> whereClause
-// This is done so that we can handle nested expressions and simple conditions
 // SQL has OR -> AND -> NOT precedence. so we need to handle that in the grammar
 
 // Handles OR operations
@@ -77,3 +72,18 @@ whereClause
 whereValue: NUMBER | IDENTIFIER | STRING;
 
 whereValueList : whereValue (',' whereValue)*;
+
+//------------------ ORDER BY Clause ------------------
+
+orderByClause
+    : ORDERBY orderColumn (',' orderColumn)* (order)?
+    ;
+orderColumn: IDENTIFIER;
+order: ASC | DESC;
+
+// ------------------ LIMIT and OFFSET Clause ------------------
+limitClause
+     : LIMIT NUMBER;
+
+ offsetClause
+     : OFFSET NUMBER;

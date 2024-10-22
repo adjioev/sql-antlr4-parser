@@ -5,7 +5,7 @@ import lombok.Getter;
 @Getter
 public class BetweenCondition implements WhereComponent {
     private final String column;
-    private final Object lowerBound;
+    private final Object lowerBound; // TODO: string or int?
     private final Object upperBound;
 
     public BetweenCondition(String column, Object lowerBound, Object upperBound) {

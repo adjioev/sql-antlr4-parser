@@ -25,6 +25,20 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
             query.setWhereComponent(whereComponent);
         }
 
+        // ORDER BY
+        if (ctx.orderByClause() != null) {
+            Sort sort = new Sort();
+            SqlParser.OrderByClauseContext orderByCtx = ctx.orderByClause();
+            if (orderByCtx.order() != null) {
+                String order = orderByCtx.order().getText();
+                sort.setOrder(order);
+            }
+            for (SqlParser.OrderColumnContext orderColumnCtx : orderByCtx.orderColumn()) {
+                sort.addColumn( orderColumnCtx.getText());
+            }
+            query.setSort(sort);
+        }
+
         // Set LIMIT and OFFSET
         if (ctx.limitClause() != null) {
             query.setLimit(Integer.parseInt(ctx.limitClause().NUMBER().getText()));

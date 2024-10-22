@@ -23,18 +23,6 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelect(SqlParser.SelectContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#limitClause}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLimitClause(SqlParser.LimitClauseContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SqlParser#offsetClause}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitOffsetClause(SqlParser.OffsetClauseContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link SqlParser#selectElements}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -154,4 +142,34 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitWhereValueList(SqlParser.WhereValueListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#orderByClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOrderByClause(SqlParser.OrderByClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#orderColumn}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOrderColumn(SqlParser.OrderColumnContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#order}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOrder(SqlParser.OrderContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#limitClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLimitClause(SqlParser.LimitClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#offsetClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitOffsetClause(SqlParser.OffsetClauseContext ctx);
 }
