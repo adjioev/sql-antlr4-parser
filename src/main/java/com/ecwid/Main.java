@@ -18,7 +18,15 @@ public class Main {
 //                "HAVING COUNT(book.id) > 1 AND SUM(book.cost) > 500 " +
 //                "LIMIT 10;";
 
-        String sql = "SELECT author.name, author.age FROM author ORDER BY column1, column2 DESC LIMIT 10 OFFSET 20;";
+//        String sql = "SELECT author.name, author.age FROM author ORDER BY column1, column2 DESC LIMIT 10 OFFSET 20;";
+
+        String sql = "SELECT author.name " +
+                "FROM author " +
+                "LEFT JOIN book ON author.id = book.author_id " +
+                "LEFT JOIN book ON author.id = book.author_id " +
+//                "GROUP BY author.name " +
+//                "HAVING COUNT(book.id) > 1 AND SUM(book.cost) > 500 " +
+                "LIMIT 10;";
 
 
         // Use the SqlQueryService to get a Query object

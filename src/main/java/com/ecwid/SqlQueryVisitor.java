@@ -3,6 +3,7 @@ package com.ecwid;
 import com.ecwid.antlrparser.SqlParserBaseVisitor;
 import com.ecwid.antlrparser.SqlParser;
 import com.ecwid.query.*;
+import com.ecwid.query.join.Join;
 import com.ecwid.query.where.WhereComponent;
 
 public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
@@ -23,6 +24,16 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
             WhereClauseVisitor whereVisitor = new WhereClauseVisitor();
             WhereComponent whereComponent = whereVisitor.visit(ctx.orExpression());
             query.setWhereComponent(whereComponent);
+        }
+
+        if (ctx.joinClause() != null) {
+            JoinClauseVisitor joinVisitor = new JoinClauseVisitor();
+            ctx.joinClause().forEach(joinCtx -> {
+                Join join = joinVisitor.visit(joinCtx);
+                query.addJoin(join);
+            });
+//            Join join = joinVisitor.visit(ctx.joinClause());
+//            query.addJoin(join);
         }
 
         // ORDER BY

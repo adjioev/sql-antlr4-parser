@@ -8,6 +8,7 @@ statement
 select
     :   SELECT selectElements
         FROM tableName
+        (joinClause)*
         (WHERE orExpression)?
         (orderByClause)?
         (limitClause)?
@@ -26,6 +27,27 @@ tableName : IDENTIFIER;
 
 logicalOperator: AND | OR;
 
+
+// ------------------ JOIN Clause ------------------
+// Hiarchy - joinClause -> joinType -> tableName -> joinCondition
+joinClause
+    : joinType tableName ON joinCondition
+    ;
+
+joinType
+    : INNER JOIN
+    | LEFT JOIN
+    | RIGHT JOIN
+    | FULL  OUTER JOIN
+    ;
+
+joinCondition
+    : joinElements COMP_OPERATOR joinElements
+    ;
+
+joinElements
+    : selectElements (',' selectElements)*
+    ;
 
 // ------------------ WHERE Clause ------------------
 // Just for fun, full-ish  implementation for SQL WHERE clause

@@ -1,5 +1,6 @@
 package com.ecwid.query;
 
+import com.ecwid.query.join.Join;
 import com.ecwid.query.where.WhereComponent;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +22,8 @@ import java.util.List;
 public class Query {
     private final List<String> columns = new ArrayList<>();
 
+    private final List<Join> joins = new ArrayList<>();
+
     @Setter
     private WhereComponent whereComponent;
 
@@ -40,18 +43,24 @@ public class Query {
         columns.add(column);
     }
 
+
+    public void addJoin(Join join) {
+        joins.add(join);
+    }
+
     @Override
     public String toString() {
         return String.format("""
                         Query{
                             columns='%s',
                             tableName='%s',
+                            joins='%s',
                             Where='%s',
                             Sort='%s',
                             Limit='%s',
                             Offset='%s'
                         }""",
-                columns, tableName, whereComponent, sort, limit, offset
+                columns, tableName, joins, whereComponent, sort, limit, offset
         );
 
     }

@@ -35,6 +35,11 @@ HAVING COUNT(*) > 1 AND SUM(book.cost) > 500
 LIMIT 10;
 ```
 
+
+### SQL Join examples
+INNER JOIN Categories ON Products.CategoryID = Categories.CategoryID;
+LEFT JOIN table2 ON table1.column_name = table2.column_name;
+
 Please write a parser for an arbitrary SELECT query, representing it as a class of approximately this structure:
 ```java
 class Query {

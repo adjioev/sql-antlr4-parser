@@ -68,6 +68,46 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitLogicalOperator(SqlParser.LogicalOperatorContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SqlParser#joinClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterJoinClause(SqlParser.JoinClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#joinClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitJoinClause(SqlParser.JoinClauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#joinType}.
+	 * @param ctx the parse tree
+	 */
+	void enterJoinType(SqlParser.JoinTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#joinType}.
+	 * @param ctx the parse tree
+	 */
+	void exitJoinType(SqlParser.JoinTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#joinCondition}.
+	 * @param ctx the parse tree
+	 */
+	void enterJoinCondition(SqlParser.JoinConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#joinCondition}.
+	 * @param ctx the parse tree
+	 */
+	void exitJoinCondition(SqlParser.JoinConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#joinElements}.
+	 * @param ctx the parse tree
+	 */
+	void enterJoinElements(SqlParser.JoinElementsContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#joinElements}.
+	 * @param ctx the parse tree
+	 */
+	void exitJoinElements(SqlParser.JoinElementsContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code OrOperation}
 	 * labeled alternative in {@link SqlParser#orExpression}.
 	 * @param ctx the parse tree

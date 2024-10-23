@@ -47,6 +47,30 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitLogicalOperator(SqlParser.LogicalOperatorContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link SqlParser#joinClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJoinClause(SqlParser.JoinClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#joinType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJoinType(SqlParser.JoinTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#joinCondition}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJoinCondition(SqlParser.JoinConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#joinElements}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJoinElements(SqlParser.JoinElementsContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code OrOperation}
 	 * labeled alternative in {@link SqlParser#orExpression}.
 	 * @param ctx the parse tree

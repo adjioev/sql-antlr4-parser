@@ -1,8 +1,13 @@
 package com.ecwid;
 
 import com.ecwid.query.Query;
+import com.ecwid.query.join.Join;
+import com.ecwid.query.join.JoinCondition;
 import com.ecwid.sqlparser.SqlQueryService;
 import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class SqlQueryTest {
@@ -63,5 +68,127 @@ public class SqlQueryTest {
         assertEquals(10, query.getLimit(), "Limit should be 10");
         assertEquals(20, query.getOffset(), "Offset should be 20");
     }
+
+    // Joins tests
+
+    @Test
+    public void shouldHandleInnerJoin() {
+        String sql = "SELECT Customer.CustomerName, Orders.OrderID FROM Customer INNER JOIN Orders ON Customer.CustomerID = Orders.CustomerID;";
+        Query query = sqlQueryService.getQueryFromSql(sql);
+        List<Join> joins = query.getJoins();
+        JoinCondition joinCondition = joins.get(0).getJoinCondition();
+
+        assertEquals("Customer", query.getTableName(), "Table name should be 'Customer'");
+        assertEquals(2, query.getColumns().size(), "There should be 2 columns");
+        assertTrue(query.getColumns().contains("Customer.CustomerName"), "Query should contain 'Customer.CustomerName'");
+        assertTrue(query.getColumns().contains("Orders.OrderID"), "Query should contain 'Orders.OrderID'");
+
+        assertNotNull(joins, "There should be a join");
+        assertEquals("Orders", joins.get(0).getTableName(), "Joined table should be 'Orders'");
+        assertEquals("INNERJOIN", joins.get(0).getJoinType(), "Join type should be 'INNER'");
+
+        assertEquals("=", joinCondition.getOperator(), "Join condition should match");
+        assertEquals("Customer.CustomerID", joinCondition.getLeftCondition(), "Join condition should match");
+        assertEquals("Orders.CustomerID", joinCondition.getRightCondition(), "Join condition should match");
+    }
+
+    @Test
+    public void shouldHandleLeftJoin() {
+        String sql = "SELECT Customer.CustomerName, Orders.OrderID FROM Customer LEFT JOIN Orders ON Customer.CustomerID = Orders.CustomerID;";
+        Query query = sqlQueryService.getQueryFromSql(sql);
+        List<Join> joins = query.getJoins();
+        JoinCondition joinCondition = joins.get(0).getJoinCondition();
+
+        assertEquals("Customer", query.getTableName(), "Table name should be 'Customer'");
+        assertEquals(2, query.getColumns().size(), "There should be 2 columns");
+        assertTrue(query.getColumns().contains("Customer.CustomerName"), "Query should contain 'Customer.CustomerName'");
+        assertTrue(query.getColumns().contains("Orders.OrderID"), "Query should contain 'Orders.OrderID'");
+
+        assertNotNull(joins, "There should be a join");
+        assertEquals("Orders", joins.get(0).getTableName(), "Joined table should be 'Orders'");
+        assertEquals("LEFTJOIN", joins.get(0).getJoinType(), "Join type should be 'LEFT'");
+
+        assertEquals("=", joinCondition.getOperator(), "Join condition should match");
+        assertEquals("Customer.CustomerID", joinCondition.getLeftCondition(), "Join condition should match");
+        assertEquals("Orders.CustomerID", joinCondition.getRightCondition(), "Join condition should match");
+    }
+
+    @Test
+    public void shouldHandleRightJoin() {
+        String sql = "SELECT Customer.CustomerName, Orders.OrderID FROM Customer RIGHT JOIN Orders ON Customer.CustomerID = Orders.CustomerID;";
+        Query query = sqlQueryService.getQueryFromSql(sql);
+        List<Join> joins = query.getJoins();
+        JoinCondition joinCondition = joins.get(0).getJoinCondition();
+
+        assertEquals("Customer", query.getTableName(), "Table name should be 'Customer'");
+        assertEquals(2, query.getColumns().size(), "There should be 2 columns");
+        assertTrue(query.getColumns().contains("Customer.CustomerName"), "Query should contain 'Customer.CustomerName'");
+        assertTrue(query.getColumns().contains("Orders.OrderID"), "Query should contain 'Orders.OrderID'");
+
+        assertNotNull(joins, "There should be a join");
+        assertEquals("Orders", joins.get(0).getTableName(), "Joined table should be 'Orders'");
+        assertEquals("RIGHTJOIN", joins.get(0).getJoinType(), "Join type should be 'RIGHT'");
+
+        assertEquals("=", joinCondition.getOperator(), "Join condition should match");
+        assertEquals("Customer.CustomerID", joinCondition.getLeftCondition(), "Join condition should match");
+        assertEquals("Orders.CustomerID", joinCondition.getRightCondition(), "Join condition should match");
+    }
+
+    @Test
+    public void shouldHandleFullJoin() {
+        String sql = "SELECT Customer.CustomerName, Orders.OrderID FROM Customer FULL OUTER JOIN Orders ON Customer.CustomerID = Orders.CustomerID;";
+        Query query = sqlQueryService.getQueryFromSql(sql);
+        List<Join> joins = query.getJoins();
+        JoinCondition joinCondition = joins.get(0).getJoinCondition();
+
+        assertEquals("Customer", query.getTableName(), "Table name should be 'Customer'");
+        assertEquals(2, query.getColumns().size(), "There should be 2 columns");
+        assertTrue(query.getColumns().contains("Customer.CustomerName"), "Query should contain 'Customer.CustomerName'");
+        assertTrue(query.getColumns().contains("Orders.OrderID"), "Query should contain 'Orders.OrderID'");
+
+        assertNotNull(joins, "There should be a join");
+        assertEquals("Orders", joins.get(0).getTableName(), "Joined table should be 'Orders'");
+        assertEquals("FULLOUTERJOIN", joins.get(0).getJoinType(), "Join type should be 'FULL OUTER'");
+
+        assertEquals("=", joinCondition.getOperator(), "Join condition should match");
+        assertEquals("Customer.CustomerID", joinCondition.getLeftCondition(), "Join condition should match");
+        assertEquals("Orders.CustomerID", joinCondition.getRightCondition(), "Join condition should match");
+    }
+
+    @Test
+    public void shouldHandleMultipleJoins() {
+        String sql = "SELECT Customer.CustomerName, Orders.OrderID, Product.ProductName FROM Customer " +
+                "INNER JOIN Orders ON Customer.CustomerID = Orders.CustomerID " +
+                "LEFT JOIN Product ON Orders.ProductID = Product.ProductID;";
+        Query query = sqlQueryService.getQueryFromSql(sql);
+        List<Join> joins = query.getJoins();
+
+        assertEquals("Customer", query.getTableName(), "Table name should be 'Customer'");
+        assertEquals(3, query.getColumns().size(), "There should be 3 columns");
+        assertTrue(query.getColumns().contains("Customer.CustomerName"), "Query should contain 'Customer.CustomerName'");
+        assertTrue(query.getColumns().contains("Orders.OrderID"), "Query should contain 'Orders.OrderID'");
+        assertTrue(query.getColumns().contains("Product.ProductName"), "Query should contain 'Product.ProductName'");
+
+        assertNotNull(joins, "There should be joins");
+        assertEquals(2, joins.size(), "There should be 2 joins");
+
+        // Check first join (INNER JOIN)
+        JoinCondition joinCondition1 = joins.get(0).getJoinCondition();
+        assertEquals("Orders", joins.get(0).getTableName(), "First joined table should be 'Orders'");
+        assertEquals("INNERJOIN", joins.get(0).getJoinType(), "First join type should be 'INNER'");
+        assertEquals("=", joinCondition1.getOperator(), "Join condition should match");
+        assertEquals("Customer.CustomerID", joinCondition1.getLeftCondition(), "Join condition should match");
+        assertEquals("Orders.CustomerID", joinCondition1.getRightCondition(), "Join condition should match");
+
+        // Check second join (LEFT JOIN)
+        JoinCondition joinCondition2 = joins.get(1).getJoinCondition();
+        assertEquals("Product", joins.get(1).getTableName(), "Second joined table should be 'Product'");
+        assertEquals("LEFTJOIN", joins.get(1).getJoinType(), "Second join type should be 'LEFT'");
+        assertEquals("=", joinCondition2.getOperator(), "Join condition should match");
+        assertEquals("Orders.ProductID", joinCondition2.getLeftCondition(), "Join condition should match");
+        assertEquals("Product.ProductID", joinCondition2.getRightCondition(), "Join condition should match");
+    }
+
+
 
 }
