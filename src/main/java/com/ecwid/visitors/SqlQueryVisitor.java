@@ -13,6 +13,9 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
     public Query visitSelect(SqlParser.SelectContext ctx) {
         Query query = new Query();
 
+        String tableName = ctx.tableName().getText();
+        query.setTableName(tableName);
+
         // SELECT
         if (ctx.SELECT() != null  && ctx.selectElements() != null) {
             SelectClauseVisitor selectClauseVisitor = new SelectClauseVisitor();

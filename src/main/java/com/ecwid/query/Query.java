@@ -1,13 +1,18 @@
 package com.ecwid.query;
 
 import com.ecwid.query.join.Join;
+import com.ecwid.query.select.AsteriskSelect;
 import com.ecwid.query.select.SelectComponent;
+import com.ecwid.query.select.SelectElement;
+import com.ecwid.query.select.SelectList;
 import com.ecwid.query.where.WhereComponent;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.xml.transform.Source;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 //class Query {
@@ -49,6 +54,18 @@ public class Query {
 
     public void addJoin(Join join) {
         joins.add(join);
+    }
+
+
+    // Method to get the list of selected columns
+    public List<String> getColumns() {
+        if (selectComponent instanceof AsteriskSelect) {
+            return List.of("*");
+        } else if (selectComponent instanceof SelectList selectList) {
+            return selectList.getColumns();
+        } else {
+            return Collections.emptyList();
+        }
     }
 
     @Override
