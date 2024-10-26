@@ -30,7 +30,7 @@ public class Main {
 //
 
 //        String sql = "SELECT Customers AS c, Orders AS o FROM Customers, Orders;";
-        String sql = "SELECT Customers.Name AS name, Customers.Age as age FROM Customers;";
+        String sql = "SELECT Customers.Name AS name, Customers.Age AS age FROM Customers;";
 //        String sql = "SELECT *  FROM Customers;";
 
         // Use the SqlQueryService to get a Query object

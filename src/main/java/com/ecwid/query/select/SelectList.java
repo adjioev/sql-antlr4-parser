@@ -1,9 +1,7 @@
 package com.ecwid.query.select;
 
-import lombok.Getter;
 import java.util.List;
 
-@Getter
 public record SelectList(List<SelectElement> elements) implements SelectComponent {
 
     public String toString() {

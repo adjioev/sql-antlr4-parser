@@ -1,12 +1,18 @@
 package com.ecwid.query.select;
 
-import lombok.Getter;
+/**
+ * @param tableName  Optional, can be null if unqualified
+ * @param columnName Can be '*', or actual column name
+ */
+public record ColumnExpression(String tableName, String columnName) implements Expression {
 
-@Getter
-public record ColumnExpression(String columnName) implements Expression {
-
+    // Optional: Override toString() for debugging
+    @Override
     public String toString() {
-        return columnName;
+        if (tableName != null) {
+            return tableName + "." + columnName;
+        } else {
+            return columnName;
+        }
     }
-
 }
