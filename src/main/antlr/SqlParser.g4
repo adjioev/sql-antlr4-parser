@@ -16,14 +16,42 @@ select
         ';'?
     ;
 
+// SELECT items
 selectElements
-    : ASTERIX
-    | columnName (',' columnName)*;
+    : ASTERIX                                      # AsteriskSelect
+    | selectElement (',' selectElement)*           # SelectList
+    ;
 
-columnName
-    : IDENTIFIER ('.' IDENTIFIER)?;
 
-tableName : IDENTIFIER;
+selectElement
+    : expression (AS? alias)?
+    ;
+
+alias: IDENTIFIER;
+
+expression
+    : IDENTIFIER                                   # ColumnNameExpr
+    | IDENTIFIER '.' IDENTIFIER                    # QualifiedColumnNameExpr
+    | IDENTIFIER '.' ASTERIX                       # TableAsteriskExpr
+    | literal                                      # LiteralExpr
+//    | '(' expression ')'                            # ParenthesizedExpr
+//    | functionCall                                  # FunctionCallExpr
+//    | expression operator expression                # BinaryOperationExpr
+    ;
+
+literal
+    : NUMBER
+    | STRING
+    ;
+
+// FROM Sources
+tableName
+    : IDENTIFIER;
+
+columnName:
+    IDENTIFIER ('.'IDENTIFIER)?
+    | IDENTIFIER('.'ASTERIX)?
+    ;
 
 logicalOperator: AND | OR;
 

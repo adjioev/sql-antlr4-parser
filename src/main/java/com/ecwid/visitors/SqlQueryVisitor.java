@@ -1,9 +1,10 @@
-package com.ecwid;
+package com.ecwid.visitors;
 
 import com.ecwid.antlrparser.SqlParserBaseVisitor;
 import com.ecwid.antlrparser.SqlParser;
 import com.ecwid.query.*;
 import com.ecwid.query.join.Join;
+import com.ecwid.query.select.SelectComponent;
 import com.ecwid.query.where.WhereComponent;
 
 public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
@@ -12,12 +13,12 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
     public Query visitSelect(SqlParser.SelectContext ctx) {
         Query query = new Query();
 
-        // Process select elements
-        visitSelectElements(ctx.selectElements(), query);
-
-        // Get table name
-        String tableName = ctx.tableName().getText();
-        query.setTableName(tableName);
+        // SELECT
+        if (ctx.SELECT() != null  && ctx.selectElements() != null) {
+            SelectClauseVisitor selectClauseVisitor = new SelectClauseVisitor();
+            SelectComponent selectComponent = selectClauseVisitor.visit(ctx.selectElements());
+            query.setSelectComponent(selectComponent);
+        }
 
         // Use WhereClauseVisitor to process the WHERE clause
         if (ctx.WHERE() != null && ctx.orExpression() != null) {
@@ -32,8 +33,6 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
                 Join join = joinVisitor.visit(joinCtx);
                 query.addJoin(join);
             });
-//            Join join = joinVisitor.visit(ctx.joinClause());
-//            query.addJoin(join);
         }
 
         // ORDER BY
@@ -62,15 +61,15 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
     }
 
     // Helper method to visit selectElements and extract columns
-    private void visitSelectElements(SqlParser.SelectElementsContext ctx, Query query) {
-        if (ctx.ASTERIX() != null) {
-            query.addColumn("*");
-        } else {
-            // Loop through each columnName in selectElements
-            for (SqlParser.ColumnNameContext columnCtx : ctx.columnName()) {
-                String columnName = columnCtx.getText();
-                query.addColumn(columnName);
-            }
-        }
-    }
+//    private void visitSelectElements(SqlParser.SelectElementsContext ctx, Query query) {
+//        if (ctx.ASTERIX() != null) {
+//            query.addColumn("*");
+//        } else {
+//            // Loop through each columnName in selectElements
+//            for (SqlParser.ColumnNameContext columnCtx : ctx.columnName()) {
+//                String columnName = columnCtx.getText();
+//                query.addColumn(columnName);
+//            }
+//        }
+//    }
 }

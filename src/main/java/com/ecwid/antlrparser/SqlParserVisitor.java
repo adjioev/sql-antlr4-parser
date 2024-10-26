@@ -23,23 +23,77 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelect(SqlParser.SelectContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#selectElements}.
+	 * Visit a parse tree produced by the {@code AsteriskSelect}
+	 * labeled alternative in {@link SqlParser#selectElements}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSelectElements(SqlParser.SelectElementsContext ctx);
+	T visitAsteriskSelect(SqlParser.AsteriskSelectContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#columnName}.
+	 * Visit a parse tree produced by the {@code SelectList}
+	 * labeled alternative in {@link SqlParser#selectElements}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitColumnName(SqlParser.ColumnNameContext ctx);
+	T visitSelectList(SqlParser.SelectListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#selectElement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelectElement(SqlParser.SelectElementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#alias}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAlias(SqlParser.AliasContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ColumnNameExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColumnNameExpr(SqlParser.ColumnNameExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code QualifiedColumnNameExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitQualifiedColumnNameExpr(SqlParser.QualifiedColumnNameExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TableAsteriskExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTableAsteriskExpr(SqlParser.TableAsteriskExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LiteralExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLiteralExpr(SqlParser.LiteralExprContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#literal}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLiteral(SqlParser.LiteralContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SqlParser#tableName}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitTableName(SqlParser.TableNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#columnName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitColumnName(SqlParser.ColumnNameContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SqlParser#logicalOperator}.
 	 * @param ctx the parse tree

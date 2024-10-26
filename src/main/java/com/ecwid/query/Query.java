@@ -1,15 +1,17 @@
 package com.ecwid.query;
 
 import com.ecwid.query.join.Join;
+import com.ecwid.query.select.SelectComponent;
 import com.ecwid.query.where.WhereComponent;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.xml.transform.Source;
 import java.util.ArrayList;
 import java.util.List;
 
 //class Query {
-//    private List<String> columns; - need support for *
+//    private List<String> columns; - SelectItem
 //    private List<Source> fromSources;
 //    private List<Join> joins;
 //    private List<WhereClause> whereClauses;
@@ -20,13 +22,19 @@ import java.util.List;
 //}
 @Getter
 public class Query {
-    private final List<String> columns = new ArrayList<>();
+    @Setter
+    private SelectComponent selectComponent;
 
+    //FROM Sources
+    private List<Source> fromSources = new ArrayList<>();
+
+    //
     private final List<Join> joins = new ArrayList<>();
 
     @Setter
     private WhereComponent whereComponent;
 
+    //TODO: delete this, temp solution
     @Setter
     private String tableName;
 
@@ -38,11 +46,6 @@ public class Query {
 
     @Setter
     private int offset;
-
-    public void addColumn(String column) {
-        columns.add(column);
-    }
-
 
     public void addJoin(Join join) {
         joins.add(join);
@@ -60,7 +63,7 @@ public class Query {
                             Limit='%s',
                             Offset='%s'
                         }""",
-                columns, tableName, joins, whereComponent, sort, limit, offset
+                selectComponent, tableName, joins, whereComponent, sort, limit, offset
         );
 
     }

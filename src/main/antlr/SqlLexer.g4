@@ -2,6 +2,7 @@ lexer grammar SqlLexer;
 options { caseInsensitive = true; }
 
 SELECT: 'SELECT';
+AS: 'AS';
 FROM: 'FROM';
 WHERE: 'WHERE';
 BETWEEN: 'BETWEEN';

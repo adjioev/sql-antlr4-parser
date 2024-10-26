@@ -20,14 +20,18 @@ public class Main {
 
 //        String sql = "SELECT author.name, author.age FROM author ORDER BY column1, column2 DESC LIMIT 10 OFFSET 20;";
 
-        String sql = "SELECT author.name " +
-                "FROM author " +
-                "LEFT JOIN book ON author.id = book.author_id " +
-                "LEFT JOIN book ON author.id = book.author_id " +
+//        String sql = "SELECT author.name " +
+//                "FROM author " +
+//                "LEFT JOIN book ON author.id = book.author_id " +
+//                "LEFT JOIN book ON author.id = book.author_id " +
 //                "GROUP BY author.name " +
 //                "HAVING COUNT(book.id) > 1 AND SUM(book.cost) > 500 " +
-                "LIMIT 10;";
+//                "LIMIT 10;";
+//
 
+//        String sql = "SELECT Customers AS c, Orders AS o FROM Customers, Orders;";
+        String sql = "SELECT * FROM Customers;";
+//        String sql = "SELECT *  FROM Customers;";
 
         // Use the SqlQueryService to get a Query object
         SqlQueryService sqlQueryService = new SqlQueryService();

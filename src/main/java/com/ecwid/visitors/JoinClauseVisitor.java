@@ -1,4 +1,4 @@
-package com.ecwid;
+package com.ecwid.visitors;
 
 import com.ecwid.antlrparser.SqlParser;
 import com.ecwid.antlrparser.SqlParserBaseVisitor;

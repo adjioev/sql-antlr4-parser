@@ -28,25 +28,107 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitSelect(SqlParser.SelectContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SqlParser#selectElements}.
+	 * Enter a parse tree produced by the {@code AsteriskSelect}
+	 * labeled alternative in {@link SqlParser#selectElements}.
 	 * @param ctx the parse tree
 	 */
-	void enterSelectElements(SqlParser.SelectElementsContext ctx);
+	void enterAsteriskSelect(SqlParser.AsteriskSelectContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SqlParser#selectElements}.
+	 * Exit a parse tree produced by the {@code AsteriskSelect}
+	 * labeled alternative in {@link SqlParser#selectElements}.
 	 * @param ctx the parse tree
 	 */
-	void exitSelectElements(SqlParser.SelectElementsContext ctx);
+	void exitAsteriskSelect(SqlParser.AsteriskSelectContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SqlParser#columnName}.
+	 * Enter a parse tree produced by the {@code SelectList}
+	 * labeled alternative in {@link SqlParser#selectElements}.
 	 * @param ctx the parse tree
 	 */
-	void enterColumnName(SqlParser.ColumnNameContext ctx);
+	void enterSelectList(SqlParser.SelectListContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SqlParser#columnName}.
+	 * Exit a parse tree produced by the {@code SelectList}
+	 * labeled alternative in {@link SqlParser#selectElements}.
 	 * @param ctx the parse tree
 	 */
-	void exitColumnName(SqlParser.ColumnNameContext ctx);
+	void exitSelectList(SqlParser.SelectListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#selectElement}.
+	 * @param ctx the parse tree
+	 */
+	void enterSelectElement(SqlParser.SelectElementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#selectElement}.
+	 * @param ctx the parse tree
+	 */
+	void exitSelectElement(SqlParser.SelectElementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#alias}.
+	 * @param ctx the parse tree
+	 */
+	void enterAlias(SqlParser.AliasContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#alias}.
+	 * @param ctx the parse tree
+	 */
+	void exitAlias(SqlParser.AliasContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code ColumnNameExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterColumnNameExpr(SqlParser.ColumnNameExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ColumnNameExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitColumnNameExpr(SqlParser.ColumnNameExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code QualifiedColumnNameExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterQualifiedColumnNameExpr(SqlParser.QualifiedColumnNameExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code QualifiedColumnNameExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitQualifiedColumnNameExpr(SqlParser.QualifiedColumnNameExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TableAsteriskExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterTableAsteriskExpr(SqlParser.TableAsteriskExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TableAsteriskExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitTableAsteriskExpr(SqlParser.TableAsteriskExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code LiteralExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterLiteralExpr(SqlParser.LiteralExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code LiteralExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitLiteralExpr(SqlParser.LiteralExprContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void enterLiteral(SqlParser.LiteralContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#literal}.
+	 * @param ctx the parse tree
+	 */
+	void exitLiteral(SqlParser.LiteralContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SqlParser#tableName}.
 	 * @param ctx the parse tree
@@ -57,6 +139,16 @@ public interface SqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTableName(SqlParser.TableNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#columnName}.
+	 * @param ctx the parse tree
+	 */
+	void enterColumnName(SqlParser.ColumnNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#columnName}.
+	 * @param ctx the parse tree
+	 */
+	void exitColumnName(SqlParser.ColumnNameContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SqlParser#logicalOperator}.
 	 * @param ctx the parse tree
