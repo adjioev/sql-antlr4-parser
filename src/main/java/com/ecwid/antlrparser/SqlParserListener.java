@@ -28,6 +28,60 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitSelect(SqlParser.SelectContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link SqlParser#tableList}.
+	 * @param ctx the parse tree
+	 */
+	void enterTableList(SqlParser.TableListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#tableList}.
+	 * @param ctx the parse tree
+	 */
+	void exitTableList(SqlParser.TableListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#tableElement}.
+	 * @param ctx the parse tree
+	 */
+	void enterTableElement(SqlParser.TableElementContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#tableElement}.
+	 * @param ctx the parse tree
+	 */
+	void exitTableElement(SqlParser.TableElementContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TableNameSource}
+	 * labeled alternative in {@link SqlParser#tableSource}.
+	 * @param ctx the parse tree
+	 */
+	void enterTableNameSource(SqlParser.TableNameSourceContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TableNameSource}
+	 * labeled alternative in {@link SqlParser#tableSource}.
+	 * @param ctx the parse tree
+	 */
+	void exitTableNameSource(SqlParser.TableNameSourceContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SubquerySource}
+	 * labeled alternative in {@link SqlParser#tableSource}.
+	 * @param ctx the parse tree
+	 */
+	void enterSubquerySource(SqlParser.SubquerySourceContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SubquerySource}
+	 * labeled alternative in {@link SqlParser#tableSource}.
+	 * @param ctx the parse tree
+	 */
+	void exitSubquerySource(SqlParser.SubquerySourceContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#tableName}.
+	 * @param ctx the parse tree
+	 */
+	void enterTableName(SqlParser.TableNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#tableName}.
+	 * @param ctx the parse tree
+	 */
+	void exitTableName(SqlParser.TableNameContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code AsteriskSelect}
 	 * labeled alternative in {@link SqlParser#selectElements}.
 	 * @param ctx the parse tree
@@ -107,16 +161,6 @@ public interface SqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTableAsteriskExpr(SqlParser.TableAsteriskExprContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link SqlParser#tableName}.
-	 * @param ctx the parse tree
-	 */
-	void enterTableName(SqlParser.TableNameContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SqlParser#tableName}.
-	 * @param ctx the parse tree
-	 */
-	void exitTableName(SqlParser.TableNameContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SqlParser#columnName}.
 	 * @param ctx the parse tree

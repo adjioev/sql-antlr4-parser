@@ -3,8 +3,6 @@ package com.ecwid;
 import com.ecwid.query.Query;
 import com.ecwid.sqlparser.SqlQueryService;
 
-import java.util.List;
-
 public class Main {
     public static void main(String[] args) {
 //        String sql = "SELECT * FROM Students WHERE age > 30";
@@ -32,7 +30,8 @@ public class Main {
 //
 
 //        String sql = "SELECT Customers AS c, Orders AS o FROM Customers, Orders;";
-        String sql = "SELECT Customers.Name AS name, Customers.Age AS age FROM Customers;";
+//        String sql = "SELECT * FROM (SELECT id, name FROM users WHERE active = 1) active_users;";
+        String sql = "SELECT * FROM col1, col2, col3, t;";
 //        String sql = "SELECT *  FROM Customers;";
 
         // Use the SqlQueryService to get a Query object

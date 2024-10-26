@@ -5,6 +5,7 @@ import com.ecwid.antlrparser.SqlParser;
 import com.ecwid.query.*;
 import com.ecwid.query.join.Join;
 import com.ecwid.query.select.SelectComponent;
+import com.ecwid.query.source.SourceComponent;
 import com.ecwid.query.where.WhereComponent;
 
 public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
@@ -13,14 +14,18 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
     public Query visitSelect(SqlParser.SelectContext ctx) {
         Query query = new Query();
 
-        String tableName = ctx.tableName().getText();
-        query.setTableName(tableName);
-
         // SELECT
         if (ctx.SELECT() != null  && ctx.selectElements() != null) {
             SelectClauseVisitor selectClauseVisitor = new SelectClauseVisitor();
             SelectComponent selectComponent = selectClauseVisitor.visit(ctx.selectElements());
             query.setSelectComponent(selectComponent);
+        }
+
+        // TODO: move join clause here
+        if (ctx.FROM() != null  && ctx.tableList() != null) {
+            SourceClauseVisitor sourceClauseVisitor = new SourceClauseVisitor();
+            SourceComponent sourceComponent = sourceClauseVisitor.visit(ctx.tableList());
+            query.setSourceComponent(sourceComponent);
         }
 
         // Use WhereClauseVisitor to process the WHERE clause
@@ -62,17 +67,4 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
 
         return query;
     }
-
-    // Helper method to visit selectElements and extract columns
-//    private void visitSelectElements(SqlParser.SelectElementsContext ctx, Query query) {
-//        if (ctx.ASTERIX() != null) {
-//            query.addColumn("*");
-//        } else {
-//            // Loop through each columnName in selectElements
-//            for (SqlParser.ColumnNameContext columnCtx : ctx.columnName()) {
-//                String columnName = columnCtx.getText();
-//                query.addColumn(columnName);
-//            }
-//        }
-//    }
 }

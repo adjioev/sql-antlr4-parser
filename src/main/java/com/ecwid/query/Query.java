@@ -3,15 +3,14 @@ package com.ecwid.query;
 import com.ecwid.query.join.Join;
 import com.ecwid.query.select.AsteriskSelect;
 import com.ecwid.query.select.SelectComponent;
-import com.ecwid.query.select.SelectElement;
 import com.ecwid.query.select.SelectList;
+import com.ecwid.query.source.SourceComponent;
 import com.ecwid.query.where.WhereComponent;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.xml.transform.Source;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,13 +26,14 @@ import java.util.List;
 //}
 @Getter
 public class Query {
+
     @Setter
     private SelectComponent selectComponent;
 
-    //FROM Sources
-    private List<Source> fromSources = new ArrayList<>();
+    @Setter
+    private SourceComponent sourceComponent;
 
-    //
+
     private final List<Join> joins = new ArrayList<>();
 
     @Setter
@@ -73,14 +73,14 @@ public class Query {
         return String.format("""
                         Query{
                             columns='%s',
-                            tableName='%s',
+                            sources='%s',
                             joins='%s',
                             Where='%s',
                             Sort='%s',
                             Limit='%s',
                             Offset='%s'
                         }""",
-                selectComponent, tableName, joins, whereComponent, sort, limit, offset
+                selectComponent, sourceComponent, joins, whereComponent, sort, limit, offset
         );
 
     }

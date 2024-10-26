@@ -13,8 +13,8 @@ public class JoinClauseVisitor extends SqlParserBaseVisitor<Join> {
         SqlParser.JoinConditionContext joinConditionContext = ctx.joinCondition();
         String leftCondition = joinConditionContext.joinElements(0).getText();
         String rightCondition = joinConditionContext.joinElements(1).getText();
-        String opeator = joinConditionContext.COMP_OPERATOR().getText();
-        JoinCondition joinCondition = new JoinCondition(leftCondition, rightCondition, opeator);
+        String operator = joinConditionContext.COMP_OPERATOR().getText();
+        JoinCondition joinCondition = new JoinCondition(leftCondition, rightCondition, operator);
         return new Join(tableName, joinType, joinCondition);
     }
 }

@@ -1,14 +1,19 @@
 package com.ecwid.query.source;
 
-public class TableSource extends Source {
-    private String tableName;
+import lombok.Getter;
 
-    public TableSource(String tableName, String alias) {
+@Getter
+public class TableSource extends Source {
+    private final String tableName;
+
+    public TableSource(String tableName) {
         this.tableName = tableName;
-        this.alias = alias;
     }
 
-    public String getTableName() {
+    public String toString() {
+        if (alias != null) {
+            return tableName + " " + alias;
+        }
         return tableName;
     }
 }

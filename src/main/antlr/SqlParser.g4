@@ -6,15 +6,32 @@ statement
     ; // TODO: insert, delete. e.c. Out of scope for this project
 
 select
-    :   SELECT selectElements
-        FROM tableName
-        (joinClause)*
-        (WHERE orExpression)?
-        (orderByClause)?
-        (limitClause)?
-        (offsetClause)?
-        ';'?
+    : SELECT selectElements
+      FROM tableList
+      (joinClause)*
+      (WHERE orExpression)?
+      (orderByClause)?
+      (limitClause)?
+      (offsetClause)?
+      ';'?
     ;
+
+// FROM Sources
+tableList
+    : tableElement (',' tableElement)*
+    ;
+
+tableElement
+    : tableSource (AS? alias)? // (joinClause)* should be here
+    ;
+
+tableSource
+    : tableName                                     # TableNameSource
+    | '(' select ')'                                # SubquerySource
+    ;
+
+tableName
+    : IDENTIFIER;
 
 // SELECT items
 selectElements
@@ -36,9 +53,7 @@ expression
     | IDENTIFIER '.' ASTERIX                       # TableAsteriskExpr
     ;
 
-// FROM Sources
-tableName
-    : IDENTIFIER;
+
 
 columnName:
     IDENTIFIER ('.'IDENTIFIER)?
@@ -115,7 +130,7 @@ whereValue: NUMBER | IDENTIFIER | STRING;
 
 whereValueList : whereValue (',' whereValue)*;
 
-//------------------ ORDER BY Clause ------------------
+// ------------------------- ORDER BY Clause ------------------
 
 orderByClause
     : ORDERBY orderColumn (',' orderColumn)* (order)?

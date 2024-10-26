@@ -1,9 +1,11 @@
 package com.ecwid.query.source;
 
-abstract class Source {
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public abstract class Source implements SourceComponent {
     protected String alias;
 
-    public String getAlias() {
-        return alias;
-    }
 }

@@ -1,9 +1,9 @@
 ## TODO: 
 - [x] Enumeration of sample fields explicitly (with aliases) or *
 - [ ] Implicit join of several tables (select * from A,B,C)
+- [ ] Subqueries (select * from (select * from A) a_alias)
 - [x] Explicit join of tables (inner, left, right, full join)
 - [x] Filter conditions (where a = 1 and b > 100)
-- [ ] Subqueries (select * from (select * from A) a_alias)
 - [ ] Grouping by one or several fields (group by)
 - [x] Sorting by one or more fields (order by)
 - [x] Selection truncation (limit, offset)
