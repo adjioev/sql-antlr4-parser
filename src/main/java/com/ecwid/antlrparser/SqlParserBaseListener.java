@@ -184,25 +184,25 @@ public class SqlParserBaseListener implements SqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterColumnName(SqlParser.ColumnNameContext ctx) { }
+	@Override public void enterFunctionCallExpr(SqlParser.FunctionCallExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitColumnName(SqlParser.ColumnNameContext ctx) { }
+	@Override public void exitFunctionCallExpr(SqlParser.FunctionCallExprContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterLogicalOperator(SqlParser.LogicalOperatorContext ctx) { }
+	@Override public void enterFunctionCall(SqlParser.FunctionCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitLogicalOperator(SqlParser.LogicalOperatorContext ctx) { }
+	@Override public void exitFunctionCall(SqlParser.FunctionCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

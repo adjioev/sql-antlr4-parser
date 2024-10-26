@@ -115,14 +115,14 @@ public class SqlParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> impleme
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitColumnName(SqlParser.ColumnNameContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFunctionCallExpr(SqlParser.FunctionCallExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitLogicalOperator(SqlParser.LogicalOperatorContext ctx) { return visitChildren(ctx); }
+	@Override public T visitFunctionCall(SqlParser.FunctionCallContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

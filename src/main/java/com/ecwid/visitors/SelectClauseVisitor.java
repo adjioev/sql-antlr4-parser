@@ -30,7 +30,7 @@ public class SelectClauseVisitor extends SqlParserBaseVisitor<SelectComponent> {
         return new SelectElement(expression, alias);
     }
 
-    public ColumnExpression visitExpression(SqlParser.ExpressionContext ctx) {
+    public Expression visitExpression(SqlParser.ExpressionContext ctx) {
         if (ctx instanceof SqlParser.ColumnNameExprContext) {
             String columnName = ctx.getText();
             return new ColumnExpression(null, columnName);
@@ -39,12 +39,23 @@ public class SelectClauseVisitor extends SqlParserBaseVisitor<SelectComponent> {
             String tableName = identifiers.get(0).getText();
             String columnName = identifiers.get(1).getText();
             return new ColumnExpression(tableName, columnName);
-
         } else if (ctx instanceof SqlParser.TableAsteriskExprContext) {
             String tableName = ((SqlParser.TableAsteriskExprContext) ctx).IDENTIFIER().getText();
             return new ColumnExpression(tableName, "*");
-        } else {
+        } else if (ctx instanceof SqlParser.FunctionCallExprContext functionCallCtx) {
+            SqlParser.FunctionCallContext functionCallContext =  functionCallCtx.functionCall();
+            return visitFunctionalExpression(functionCallContext);
+        }
+        else {
             return null;
         }
     }
+    public FunctionCallExpression visitFunctionalExpression(SqlParser.FunctionCallContext ctx) {
+        String functionName = ctx.IDENTIFIER().getText();
+        List<Expression> arguments = ctx.expression().stream()
+                .map(this::visitExpression)
+                .collect(Collectors.toList());
+        return new FunctionCallExpression(functionName, arguments);
+    }
+
 }

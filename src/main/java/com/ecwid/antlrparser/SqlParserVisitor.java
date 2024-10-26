@@ -102,17 +102,18 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTableAsteriskExpr(SqlParser.TableAsteriskExprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#columnName}.
+	 * Visit a parse tree produced by the {@code FunctionCallExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitColumnName(SqlParser.ColumnNameContext ctx);
+	T visitFunctionCallExpr(SqlParser.FunctionCallExprContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#logicalOperator}.
+	 * Visit a parse tree produced by {@link SqlParser#functionCall}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitLogicalOperator(SqlParser.LogicalOperatorContext ctx);
+	T visitFunctionCall(SqlParser.FunctionCallContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SqlParser#joinClause}.
 	 * @param ctx the parse tree

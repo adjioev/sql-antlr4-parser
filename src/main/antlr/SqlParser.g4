@@ -46,22 +46,18 @@ selectElement
 
 alias: IDENTIFIER;
 
-//TODO: extend for other types of expressions (literal, function, etc)
+//TODO: extend for other types of expressions
 expression
     : IDENTIFIER                                   # ColumnNameExpr
     | IDENTIFIER '.' IDENTIFIER                    # QualifiedColumnNameExpr
     | IDENTIFIER '.' ASTERIX                       # TableAsteriskExpr
+    | functionCall                                  # FunctionCallExpr
     ;
 
-
-
-columnName:
-    IDENTIFIER ('.'IDENTIFIER)?
-    | IDENTIFIER('.'ASTERIX)?
+// functions like COUNT, SUM, AVG, MAX, MIN
+functionCall
+    : IDENTIFIER '(' (expression (',' expression)*)? ')'
     ;
-
-logicalOperator: AND | OR;
-
 
 // ------------------ JOIN Clause ------------------
 // Hiarchy - joinClause -> joinType -> tableName -> joinCondition

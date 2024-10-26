@@ -162,25 +162,27 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitTableAsteriskExpr(SqlParser.TableAsteriskExprContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SqlParser#columnName}.
+	 * Enter a parse tree produced by the {@code FunctionCallExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterColumnName(SqlParser.ColumnNameContext ctx);
+	void enterFunctionCallExpr(SqlParser.FunctionCallExprContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SqlParser#columnName}.
+	 * Exit a parse tree produced by the {@code FunctionCallExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitColumnName(SqlParser.ColumnNameContext ctx);
+	void exitFunctionCallExpr(SqlParser.FunctionCallExprContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SqlParser#logicalOperator}.
+	 * Enter a parse tree produced by {@link SqlParser#functionCall}.
 	 * @param ctx the parse tree
 	 */
-	void enterLogicalOperator(SqlParser.LogicalOperatorContext ctx);
+	void enterFunctionCall(SqlParser.FunctionCallContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SqlParser#logicalOperator}.
+	 * Exit a parse tree produced by {@link SqlParser#functionCall}.
 	 * @param ctx the parse tree
 	 */
-	void exitLogicalOperator(SqlParser.LogicalOperatorContext ctx);
+	void exitFunctionCall(SqlParser.FunctionCallContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SqlParser#joinClause}.
 	 * @param ctx the parse tree
