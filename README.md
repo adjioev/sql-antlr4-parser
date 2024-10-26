@@ -1,5 +1,5 @@
 ## TODO: 
-- [ ] Enumeration of sample fields explicitly (with aliases) or *
+- [x] Enumeration of sample fields explicitly (with aliases) or *
 - [ ] Implicit join of several tables (select * from A,B,C)
 - [x] Explicit join of tables (inner, left, right, full join)
 - [x] Filter conditions (where a = 1 and b > 100)
