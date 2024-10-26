@@ -1,16 +1,10 @@
 package com.ecwid.query.select;
 
 import lombok.Getter;
-
 import java.util.List;
 
 @Getter
-public class SelectList implements SelectComponent {
-    private final List<SelectElement> elements;
-
-    public SelectList(List<SelectElement> elements) {
-        this.elements = elements;
-    }
+public record SelectList(List<SelectElement> elements) implements SelectComponent {
 
     public String toString() {
         StringBuilder sb = new StringBuilder();
