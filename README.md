@@ -5,15 +5,11 @@
 - [x] Explicit join of tables (inner, left, right, full join)
 - [x] Filter conditions (where a = 1 and b > 100)
 - [ ] Grouping by one or several fields (group by)
+- [ ] Having clause 
 - [x] Sorting by one or more fields (order by)
 - [x] Selection truncation (limit, offset)
 
-
-### Extra features
-* Fix asterix in SELECT statement
-
-
-
+## SQL Query Parser
 SQL query parser
 
 In SQL, the most syntactically complex and tricky query is probably the SELECT query. It has explicit and implicit joins, groupings,
