@@ -1,4 +1,6 @@
 lexer grammar SqlLexer;
+
+// TODO: compiler complains but option works just fine
 options { caseInsensitive = true; }
 
 SELECT: 'SELECT';

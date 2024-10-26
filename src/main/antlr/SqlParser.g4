@@ -29,19 +29,11 @@ selectElement
 
 alias: IDENTIFIER;
 
+//TODO: extend for other types of expressions (literal, function, etc)
 expression
     : IDENTIFIER                                   # ColumnNameExpr
     | IDENTIFIER '.' IDENTIFIER                    # QualifiedColumnNameExpr
     | IDENTIFIER '.' ASTERIX                       # TableAsteriskExpr
-    | literal                                      # LiteralExpr
-//    | '(' expression ')'                            # ParenthesizedExpr
-//    | functionCall                                  # FunctionCallExpr
-//    | expression operator expression                # BinaryOperationExpr
-    ;
-
-literal
-    : NUMBER
-    | STRING
     ;
 
 // FROM Sources

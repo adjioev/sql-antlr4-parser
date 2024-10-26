@@ -18,7 +18,7 @@ public class SqlQueryTest {
         String sql = "SELECT CustomerName, LastName, Company FROM Customer;";
         Query query = sqlQueryService.getQueryFromSql(sql);
         assertEquals("Customer", query.getTableName(), "Table name should be 'Customer'");
-        assertEquals(3, query.getColumns().size(), "There should be 3 columns");
+        assertEquals(3, query.getSelect().size(), "There should be 3 columns");
         assertTrue(query.getColumns().contains("CustomerName"), "Query should contain 'CustomerName'");
         assertTrue(query.getColumns().contains("LastName"), "Query should contain 'LastName'");
         assertTrue(query.getColumns().contains("Company"), "Query should contain 'Company'");
