@@ -23,37 +23,25 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelect(SqlParser.SelectContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#tableList}.
+	 * Visit a parse tree produced by {@link SqlParser#groupByClause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTableList(SqlParser.TableListContext ctx);
+	T visitGroupByClause(SqlParser.GroupByClauseContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#tableElement}.
+	 * Visit a parse tree produced by the {@code GroupByColumnName}
+	 * labeled alternative in {@link SqlParser#groupColumn}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTableElement(SqlParser.TableElementContext ctx);
+	T visitGroupByColumnName(SqlParser.GroupByColumnNameContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code TableNameSource}
-	 * labeled alternative in {@link SqlParser#tableSource}.
+	 * Visit a parse tree produced by the {@code GroupByQualifiedColumnName}
+	 * labeled alternative in {@link SqlParser#groupColumn}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitTableNameSource(SqlParser.TableNameSourceContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code SubquerySource}
-	 * labeled alternative in {@link SqlParser#tableSource}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSubquerySource(SqlParser.SubquerySourceContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link SqlParser#tableName}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTableName(SqlParser.TableNameContext ctx);
+	T visitGroupByQualifiedColumnName(SqlParser.GroupByQualifiedColumnNameContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code AsteriskSelect}
 	 * labeled alternative in {@link SqlParser#selectElements}.
@@ -114,6 +102,38 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunctionCall(SqlParser.FunctionCallContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#tableList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTableList(SqlParser.TableListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#tableElement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTableElement(SqlParser.TableElementContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TableNameSource}
+	 * labeled alternative in {@link SqlParser#tableSource}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTableNameSource(SqlParser.TableNameSourceContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SubquerySource}
+	 * labeled alternative in {@link SqlParser#tableSource}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSubquerySource(SqlParser.SubquerySourceContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#tableName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTableName(SqlParser.TableNameContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SqlParser#joinClause}.
 	 * @param ctx the parse tree

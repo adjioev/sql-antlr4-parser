@@ -14,7 +14,7 @@ public class Main {
         String sql = "SELECT author.name, COUNT(book.id), SUM(book.cost) " +
                 "FROM author " +
                 "LEFT JOIN book ON author.id = book.author_id " +
-//                "GROUP BY author.name " +
+                "GROUP BY author.name " +
 //                "HAVING COUNT(book.id) > 1 AND SUM(book.cost) > 500 " +
                 "LIMIT 10;";
 

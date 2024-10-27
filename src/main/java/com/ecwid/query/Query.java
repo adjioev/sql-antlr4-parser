@@ -44,6 +44,9 @@ public class Query {
     private String tableName;
 
     @Setter
+    private GroupBy groupBy;
+
+    @Setter
     private Sort sort;
 
     @Setter
@@ -75,12 +78,13 @@ public class Query {
                             columns='%s',
                             sources='%s',
                             joins='%s',
+                            GroupBy='%s',
                             Where='%s',
                             Sort='%s',
                             Limit='%s',
                             Offset='%s'
                         }""",
-                selectComponent, sourceComponent, joins, whereComponent, sort, limit, offset
+                selectComponent, sourceComponent, joins, groupBy, whereComponent, sort, limit, offset
         );
 
     }

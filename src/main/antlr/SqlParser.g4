@@ -9,6 +9,7 @@ select
     : SELECT selectElements
       FROM tableList
       (joinClause)*
+      (GROUPBY groupByClause)?
       (WHERE orExpression)?
       (orderByClause)?
       (limitClause)?
@@ -16,22 +17,17 @@ select
       ';'?
     ;
 
-// FROM Sources
-tableList
-    : tableElement (',' tableElement)*
+//GROUP BY items
+groupByClause
+    : groupColumn (',' groupColumn)*
     ;
 
-tableElement
-    : tableSource (AS? alias)? // (joinClause)* should be here
+// TODO: group clauses limited to columnName and table.columnName
+groupColumn
+    : IDENTIFIER                                   # GroupByColumnName
+    | IDENTIFIER '.' IDENTIFIER                    # GroupByQualifiedColumnName
     ;
 
-tableSource
-    : tableName                                     # TableNameSource
-    | '(' select ')'                                # SubquerySource
-    ;
-
-tableName
-    : IDENTIFIER;
 
 // SELECT items
 selectElements
@@ -58,6 +54,26 @@ expression
 functionCall
     : IDENTIFIER '(' (expression (',' expression)*)? ')'
     ;
+
+// FROM Sources
+tableList
+    : tableElement (',' tableElement)*
+    ;
+
+tableElement
+    : tableSource (AS? alias)? // (joinClause)* should be here
+    ;
+
+tableSource
+    : tableName                                     # TableNameSource
+    | '(' select ')'                                # SubquerySource
+    ;
+
+tableName
+    : IDENTIFIER;
+
+
+
 
 // ------------------ JOIN Clause ------------------
 // Hiarchy - joinClause -> joinType -> tableName -> joinCondition

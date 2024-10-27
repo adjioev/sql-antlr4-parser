@@ -8,6 +8,8 @@ import com.ecwid.query.select.SelectComponent;
 import com.ecwid.query.source.SourceComponent;
 import com.ecwid.query.where.WhereComponent;
 
+import java.util.List;
+
 public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
 
     @Override
@@ -41,6 +43,12 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
                 Join join = joinVisitor.visit(joinCtx);
                 query.addJoin(join);
             });
+        }
+
+        if (ctx.GROUPBY() != null && ctx.groupByClause() != null) {
+            GroupByClauseVisitor groupByVisitor = new GroupByClauseVisitor();
+            GroupBy groupBy = groupByVisitor.visit(ctx.groupByClause());
+            query.setGroupBy(groupBy);
         }
 
         // ORDER BY
