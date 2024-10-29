@@ -7,6 +7,7 @@ SELECT: 'SELECT';
 AS: 'AS';
 FROM: 'FROM';
 WHERE: 'WHERE';
+HAVING: 'HAVING';
 BETWEEN: 'BETWEEN';
 LIKE: 'LIKE';
 IN: 'IN';
@@ -28,6 +29,13 @@ RIGHT: 'RIGHT';
 FULL: 'FULL';
 OUTER: 'OUTER';
 ON: 'ON';
+
+// Aggregates
+COUNT: 'COUNT';
+SUM: 'SUM';
+AVG: 'AVG';
+MAX: 'MAX';
+MIN: 'MIN';
 
 LOGICAL_OPERATOR: AND | OR;
 

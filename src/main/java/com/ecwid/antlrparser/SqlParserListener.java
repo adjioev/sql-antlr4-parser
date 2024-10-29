@@ -28,16 +28,6 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitSelect(SqlParser.SelectContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SqlParser#groupByClause}.
-	 * @param ctx the parse tree
-	 */
-	void enterGroupByClause(SqlParser.GroupByClauseContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SqlParser#groupByClause}.
-	 * @param ctx the parse tree
-	 */
-	void exitGroupByClause(SqlParser.GroupByClauseContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code GroupByColumnName}
 	 * labeled alternative in {@link SqlParser#groupColumn}.
 	 * @param ctx the parse tree
@@ -257,6 +247,166 @@ public interface SqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitJoinElements(SqlParser.JoinElementsContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#groupByClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterGroupByClause(SqlParser.GroupByClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#groupByClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitGroupByClause(SqlParser.GroupByClauseContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HavingAndExpressionInOr}
+	 * labeled alternative in {@link SqlParser#havingOrExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingAndExpressionInOr(SqlParser.HavingAndExpressionInOrContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingAndExpressionInOr}
+	 * labeled alternative in {@link SqlParser#havingOrExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingAndExpressionInOr(SqlParser.HavingAndExpressionInOrContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HavingOrOperation}
+	 * labeled alternative in {@link SqlParser#havingOrExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingOrOperation(SqlParser.HavingOrOperationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingOrOperation}
+	 * labeled alternative in {@link SqlParser#havingOrExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingOrOperation(SqlParser.HavingOrOperationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HavingAndOperation}
+	 * labeled alternative in {@link SqlParser#havingAndExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingAndOperation(SqlParser.HavingAndOperationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingAndOperation}
+	 * labeled alternative in {@link SqlParser#havingAndExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingAndOperation(SqlParser.HavingAndOperationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HavingUnaryExpressionInAnd}
+	 * labeled alternative in {@link SqlParser#havingAndExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingUnaryExpressionInAnd(SqlParser.HavingUnaryExpressionInAndContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingUnaryExpressionInAnd}
+	 * labeled alternative in {@link SqlParser#havingAndExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingUnaryExpressionInAnd(SqlParser.HavingUnaryExpressionInAndContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HavingNotOperation}
+	 * labeled alternative in {@link SqlParser#havingUnaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingNotOperation(SqlParser.HavingNotOperationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingNotOperation}
+	 * labeled alternative in {@link SqlParser#havingUnaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingNotOperation(SqlParser.HavingNotOperationContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HavingPrimaryExpr}
+	 * labeled alternative in {@link SqlParser#havingUnaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingPrimaryExpr(SqlParser.HavingPrimaryExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingPrimaryExpr}
+	 * labeled alternative in {@link SqlParser#havingUnaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingPrimaryExpr(SqlParser.HavingPrimaryExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HavingNestedExpr}
+	 * labeled alternative in {@link SqlParser#havingPrimaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingNestedExpr(SqlParser.HavingNestedExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingNestedExpr}
+	 * labeled alternative in {@link SqlParser#havingPrimaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingNestedExpr(SqlParser.HavingNestedExprContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HavingSimpleCondition}
+	 * labeled alternative in {@link SqlParser#havingPrimaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingSimpleCondition(SqlParser.HavingSimpleConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingSimpleCondition}
+	 * labeled alternative in {@link SqlParser#havingPrimaryExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingSimpleCondition(SqlParser.HavingSimpleConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#aggregateFunction}.
+	 * @param ctx the parse tree
+	 */
+	void enterAggregateFunction(SqlParser.AggregateFunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#aggregateFunction}.
+	 * @param ctx the parse tree
+	 */
+	void exitAggregateFunction(SqlParser.AggregateFunctionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HavingColumnName}
+	 * labeled alternative in {@link SqlParser#havingColumn}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingColumnName(SqlParser.HavingColumnNameContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingColumnName}
+	 * labeled alternative in {@link SqlParser#havingColumn}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingColumnName(SqlParser.HavingColumnNameContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HavingQualifiedColumnName}
+	 * labeled alternative in {@link SqlParser#havingColumn}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingQualifiedColumnName(SqlParser.HavingQualifiedColumnNameContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingQualifiedColumnName}
+	 * labeled alternative in {@link SqlParser#havingColumn}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingQualifiedColumnName(SqlParser.HavingQualifiedColumnNameContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#havingValue}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingValue(SqlParser.HavingValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#havingValue}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingValue(SqlParser.HavingValueContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingClause(SqlParser.HavingClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingClause(SqlParser.HavingClauseContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code OrOperation}
 	 * labeled alternative in {@link SqlParser#orExpression}.

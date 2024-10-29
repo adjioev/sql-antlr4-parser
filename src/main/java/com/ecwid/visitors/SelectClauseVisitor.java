@@ -51,7 +51,7 @@ public class SelectClauseVisitor extends SqlParserBaseVisitor<SelectComponent> {
         }
     }
     public FunctionCallExpression visitFunctionalExpression(SqlParser.FunctionCallContext ctx) {
-        String functionName = ctx.IDENTIFIER().getText();
+        String functionName = ctx.aggregateFunction().getText();
         List<Expression> arguments = ctx.expression().stream()
                 .map(this::visitExpression)
                 .collect(Collectors.toList());

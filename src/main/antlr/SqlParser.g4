@@ -9,18 +9,16 @@ select
     : SELECT selectElements
       FROM tableList
       (joinClause)*
-      (GROUPBY groupByClause)?
       (WHERE orExpression)?
+      (GROUPBY groupByClause)?
+      (HAVING havingOrExpression)?
       (orderByClause)?
       (limitClause)?
       (offsetClause)?
       ';'?
     ;
 
-//GROUP BY items
-groupByClause
-    : groupColumn (',' groupColumn)*
-    ;
+
 
 // TODO: group clauses limited to columnName and table.columnName
 groupColumn
@@ -52,7 +50,7 @@ expression
 
 // functions like COUNT, SUM, AVG, MAX, MIN
 functionCall
-    : IDENTIFIER '(' (expression (',' expression)*)? ')'
+    : aggregateFunction '(' (expression (',' expression)*)? ')'
     ;
 
 // FROM Sources
@@ -95,6 +93,59 @@ joinCondition
 joinElements
     : selectElements (',' selectElements)*
     ;
+
+//------------------GROUP BY Clause ------------------
+
+groupByClause
+    : groupColumn (',' groupColumn)*
+    ;
+
+//------------------HAVING Clause ------------------
+
+havingOrExpression
+    : havingOrExpression OR havingAndExpression        # HavingOrOperation
+    | havingAndExpression                               # HavingAndExpressionInOr
+    ;
+
+// Handles AND operations
+havingAndExpression
+    : havingAndExpression AND havingUnaryExpression      # HavingAndOperation
+    | havingUnaryExpression                              # HavingUnaryExpressionInAnd
+    ;
+
+// Handles NOT operations and primary expressions
+havingUnaryExpression
+    : NOT havingUnaryExpression                  # HavingNotOperation
+    | havingPrimaryExpression                    # HavingPrimaryExpr
+    ;
+
+// Handles nested expressions and simple conditions
+havingPrimaryExpression
+    : '(' havingOrExpression ')'                 # HavingNestedExpr
+    | havingClause                          # HavingSimpleCondition
+    ;
+
+aggregateFunction
+    : COUNT
+    | SUM
+    | AVG
+    | MIN
+    | MAX
+    ;
+
+havingColumn
+    : IDENTIFIER                                   # HavingColumnName
+    | IDENTIFIER '.' IDENTIFIER                    # HavingQualifiedColumnName
+    ;
+
+havingValue: NUMBER | IDENTIFIER | STRING;
+
+// Simplest form of a condition for HAVING clause, like
+// HAVING AGGREGATE_FUNCTION(column_name) OPERATOR value
+havingClause
+      : aggregateFunction'(' havingColumn ')' COMP_OPERATOR havingValue
+      ;
+
 
 // ------------------ WHERE Clause ------------------
 // Just for fun, full-ish  implementation for SQL WHERE clause

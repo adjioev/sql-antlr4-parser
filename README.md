@@ -1,5 +1,6 @@
 ## TODO: 
 - [x] Enumeration of sample fields explicitly (with aliases) or *
+- [x] Aggregation functions (count, sum, avg, min, max) for selected fields
 - [x] Implicit join of several tables (select * from A,B,C)
 - [x] Subqueries (select * from (select * from A) a_alias)
 - [x] Explicit join of tables (inner, left, right, full join)

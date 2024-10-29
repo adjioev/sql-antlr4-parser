@@ -23,12 +23,6 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelect(SqlParser.SelectContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#groupByClause}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitGroupByClause(SqlParser.GroupByClauseContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code GroupByColumnName}
 	 * labeled alternative in {@link SqlParser#groupColumn}.
 	 * @param ctx the parse tree
@@ -158,6 +152,100 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitJoinElements(SqlParser.JoinElementsContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#groupByClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitGroupByClause(SqlParser.GroupByClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HavingAndExpressionInOr}
+	 * labeled alternative in {@link SqlParser#havingOrExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingAndExpressionInOr(SqlParser.HavingAndExpressionInOrContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HavingOrOperation}
+	 * labeled alternative in {@link SqlParser#havingOrExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingOrOperation(SqlParser.HavingOrOperationContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HavingAndOperation}
+	 * labeled alternative in {@link SqlParser#havingAndExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingAndOperation(SqlParser.HavingAndOperationContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HavingUnaryExpressionInAnd}
+	 * labeled alternative in {@link SqlParser#havingAndExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingUnaryExpressionInAnd(SqlParser.HavingUnaryExpressionInAndContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HavingNotOperation}
+	 * labeled alternative in {@link SqlParser#havingUnaryExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingNotOperation(SqlParser.HavingNotOperationContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HavingPrimaryExpr}
+	 * labeled alternative in {@link SqlParser#havingUnaryExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingPrimaryExpr(SqlParser.HavingPrimaryExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HavingNestedExpr}
+	 * labeled alternative in {@link SqlParser#havingPrimaryExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingNestedExpr(SqlParser.HavingNestedExprContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HavingSimpleCondition}
+	 * labeled alternative in {@link SqlParser#havingPrimaryExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingSimpleCondition(SqlParser.HavingSimpleConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#aggregateFunction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAggregateFunction(SqlParser.AggregateFunctionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HavingColumnName}
+	 * labeled alternative in {@link SqlParser#havingColumn}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingColumnName(SqlParser.HavingColumnNameContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HavingQualifiedColumnName}
+	 * labeled alternative in {@link SqlParser#havingColumn}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingQualifiedColumnName(SqlParser.HavingQualifiedColumnNameContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#havingValue}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingValue(SqlParser.HavingValueContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingClause(SqlParser.HavingClauseContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code OrOperation}
 	 * labeled alternative in {@link SqlParser#orExpression}.
