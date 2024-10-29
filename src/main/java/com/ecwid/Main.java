@@ -14,6 +14,7 @@ public class Main {
         String sql = "SELECT author.name, COUNT(book.id), SUM(book.cost) " +
                 "FROM author " +
                 "LEFT JOIN book ON author.id = book.author_id " +
+                "WHERE age > 30 " + // what about author.age?
                 "GROUP BY author.name " +
                 "HAVING COUNT(book.id) > 1 AND SUM(book.cost) > 500 " +
                 "LIMIT 10;";
@@ -38,18 +39,5 @@ public class Main {
         SqlQueryService sqlQueryService = new SqlQueryService();
         Query query = sqlQueryService.getQueryFromSql(sql);
         System.out.println(query);
-
-
-//        WhereClause clause1 = new WhereClause("age", ">", 30);
-//        WhereClause clause2 = new WhereClause("status", "=", "'active'");
-//
-//        WhereExpression whereExpression = new WhereExpression(
-//                Arrays.asList(clause1, clause2),
-//                Arrays.asList("AND")
-//        );
-
-        // Lombok will generate the toString() method
-//        System.out.println(whereExpression);
-
     }
 }

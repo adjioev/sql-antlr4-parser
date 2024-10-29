@@ -1,15 +1,14 @@
 package com.ecwid.query;
 
+import com.ecwid.query.condition.Condition;
 import com.ecwid.query.join.Join;
 import com.ecwid.query.select.AsteriskSelect;
 import com.ecwid.query.select.SelectComponent;
 import com.ecwid.query.select.SelectList;
 import com.ecwid.query.source.SourceComponent;
-import com.ecwid.query.where.WhereComponent;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.xml.transform.Source;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -37,7 +36,10 @@ public class Query {
     private final List<Join> joins = new ArrayList<>();
 
     @Setter
-    private WhereComponent whereComponent;
+    private Condition whereComponent;
+
+    @Setter
+    private Condition havingComponent;
 
     //TODO: delete this, temp solution
     @Setter

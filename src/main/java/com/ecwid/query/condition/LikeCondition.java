@@ -1,9 +1,6 @@
-package com.ecwid.query.where;
+package com.ecwid.query.condition;
 
-import lombok.Getter;
-
-@Getter
-public class LikeCondition implements WhereComponent {
+public class LikeCondition implements Condition {
     private final String column;
     private final String pattern;
 

@@ -1,3 +1,5 @@
 package com.ecwid.query.condition;
 
-public interface Condition { }
+public interface Condition {
+    String toString();
+}

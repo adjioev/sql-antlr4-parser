@@ -1,19 +1,9 @@
-package com.ecwid.query.where;
-
-import lombok.Getter;
+package com.ecwid.query.condition;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Getter
-public class InCondition implements WhereComponent {
-    private final String column;
-    private final List<Object> values;
-
-    public InCondition(String column, List<Object> values) {
-        this.column = column;
-        this.values = values;
-    }
+public record InCondition(String column, List<Object> values) implements Condition {
 
     @Override
     public String toString() {

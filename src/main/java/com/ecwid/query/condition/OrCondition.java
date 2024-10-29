@@ -1,19 +1,19 @@
-package com.ecwid.query.where;
+package com.ecwid.query.condition;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class OrCondition implements WhereComponent {
-    private final List<WhereComponent> conditions;
+public class OrCondition implements Condition {
+    private final List<Condition> conditions;
 
-    public OrCondition(List<WhereComponent> conditions) {
+    public OrCondition(List<Condition> conditions) {
         this.conditions = conditions;
     }
 
     @Override
     public String toString() {
         return "(" + conditions.stream()
-                .map(WhereComponent::toString)
+                .map(Condition::toString)
                 .collect(Collectors.joining(" OR ")) + ")";
     }
 }

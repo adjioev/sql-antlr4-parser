@@ -2,61 +2,62 @@ package com.ecwid.visitors;
 
 import com.ecwid.antlrparser.SqlParserBaseVisitor;
 import com.ecwid.antlrparser.SqlParser;
-import com.ecwid.query.where.*;
+import com.ecwid.query.condition.*;
+import com.ecwid.query.condition.Condition;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class WhereClauseVisitor extends SqlParserBaseVisitor<WhereComponent> {
+public class WhereClauseVisitor extends SqlParserBaseVisitor<Condition> {
 
     @Override
-    public WhereComponent visitOrOperation(SqlParser.OrOperationContext ctx) {
-        WhereComponent left = visit(ctx.orExpression());
-        WhereComponent right = visit(ctx.andExpression());
+    public Condition visitOrOperation(SqlParser.OrOperationContext ctx) {
+        Condition left = visit(ctx.orExpression());
+        Condition right = visit(ctx.andExpression());
         return new OrCondition(Arrays.asList(left, right));
     }
 
     @Override
-    public WhereComponent visitAndOperation(SqlParser.AndOperationContext ctx) {
-        WhereComponent left = visit(ctx.andExpression());
-        WhereComponent right = visit(ctx.unaryExpression());
+    public Condition visitAndOperation(SqlParser.AndOperationContext ctx) {
+        Condition left = visit(ctx.andExpression());
+        Condition right = visit(ctx.unaryExpression());
         return new AndCondition(Arrays.asList(left, right));
     }
 
     @Override
-    public WhereComponent visitNotOperation(SqlParser.NotOperationContext ctx) {
-        WhereComponent condition = visit(ctx.unaryExpression());
+    public Condition visitNotOperation(SqlParser.NotOperationContext ctx) {
+        Condition condition = visit(ctx.unaryExpression());
         return new NotCondition(condition);
     }
 
     @Override
-    public WhereComponent visitNestedExpr(SqlParser.NestedExprContext ctx) {
+    public Condition visitNestedExpr(SqlParser.NestedExprContext ctx) {
         return visit(ctx.orExpression());
     }
 
     @Override
-    public WhereComponent visitSimpleCondition(SqlParser.SimpleConditionContext ctx) {
+    public Condition visitSimpleCondition(SqlParser.SimpleConditionContext ctx) {
         return visit(ctx.whereClause());
     }
 
     @Override
-    public WhereComponent visitComparisonCondition(SqlParser.ComparisonConditionContext ctx) {
+    public Condition visitComparisonCondition(SqlParser.ComparisonConditionContext ctx) {
         String column = ctx.IDENTIFIER().getText();
         String operator = ctx.COMP_OPERATOR().getText();
         Object value = parseValue(ctx.whereValue());
-        return new WhereClause(column, operator, value);
+        return new ComparisonCondition(column, operator, value);
     }
 
     @Override
-    public WhereComponent visitLikeCondition(SqlParser.LikeConditionContext ctx) {
+    public Condition visitLikeCondition(SqlParser.LikeConditionContext ctx) {
         String column = ctx.IDENTIFIER().getText();
         Object value = parseValue(ctx.whereValue());
         return new LikeCondition(column, value);
     }
 
     @Override
-    public WhereComponent visitBetweenCondition(SqlParser.BetweenConditionContext ctx) {
+    public Condition visitBetweenCondition(SqlParser.BetweenConditionContext ctx) {
         String column = ctx.IDENTIFIER().getText();
         Object lower = parseValue(ctx.whereValue(0));
         Object upper = parseValue(ctx.whereValue(1));
@@ -64,7 +65,7 @@ public class WhereClauseVisitor extends SqlParserBaseVisitor<WhereComponent> {
     }
 
     @Override
-    public WhereComponent visitInCondition(SqlParser.InConditionContext ctx) {
+    public Condition visitInCondition(SqlParser.InConditionContext ctx) {
         String column = ctx.IDENTIFIER().getText();
         List<Object> values = ctx.whereValueList().whereValue().stream()
                 .map(this::parseValue)

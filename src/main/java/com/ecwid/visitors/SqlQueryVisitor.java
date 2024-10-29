@@ -3,12 +3,10 @@ package com.ecwid.visitors;
 import com.ecwid.antlrparser.SqlParserBaseVisitor;
 import com.ecwid.antlrparser.SqlParser;
 import com.ecwid.query.*;
+import com.ecwid.query.condition.Condition;
 import com.ecwid.query.join.Join;
 import com.ecwid.query.select.SelectComponent;
 import com.ecwid.query.source.SourceComponent;
-import com.ecwid.query.where.WhereComponent;
-
-import java.util.List;
 
 public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
 
@@ -33,7 +31,7 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
         // Use WhereClauseVisitor to process the WHERE clause
         if (ctx.WHERE() != null && ctx.orExpression() != null) {
             WhereClauseVisitor whereVisitor = new WhereClauseVisitor();
-            WhereComponent whereComponent = whereVisitor.visit(ctx.orExpression());
+            Condition whereComponent = whereVisitor.visit(ctx.orExpression());
             query.setWhereComponent(whereComponent);
         }
 
