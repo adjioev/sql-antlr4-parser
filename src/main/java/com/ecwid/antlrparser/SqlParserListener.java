@@ -354,16 +354,6 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitHavingSimpleCondition(SqlParser.HavingSimpleConditionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SqlParser#aggregateFunction}.
-	 * @param ctx the parse tree
-	 */
-	void enterAggregateFunction(SqlParser.AggregateFunctionContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link SqlParser#aggregateFunction}.
-	 * @param ctx the parse tree
-	 */
-	void exitAggregateFunction(SqlParser.AggregateFunctionContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code HavingColumnName}
 	 * labeled alternative in {@link SqlParser#havingColumn}.
 	 * @param ctx the parse tree
@@ -621,4 +611,14 @@ public interface SqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitOffsetClause(SqlParser.OffsetClauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link SqlParser#aggregateFunction}.
+	 * @param ctx the parse tree
+	 */
+	void enterAggregateFunction(SqlParser.AggregateFunctionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link SqlParser#aggregateFunction}.
+	 * @param ctx the parse tree
+	 */
+	void exitAggregateFunction(SqlParser.AggregateFunctionContext ctx);
 }

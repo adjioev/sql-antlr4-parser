@@ -15,7 +15,7 @@ public class Main {
                 "FROM author " +
                 "LEFT JOIN book ON author.id = book.author_id " +
                 "GROUP BY author.name " +
-//                "HAVING COUNT(book.id) > 1 AND SUM(book.cost) > 500 " +
+                "HAVING COUNT(book.id) > 1 AND SUM(book.cost) > 500 " +
                 "LIMIT 10;";
 
 //        String sql = "SELECT author.name, author.age FROM author ORDER BY column1, column2 DESC LIMIT 10 OFFSET 20;";

@@ -125,13 +125,7 @@ havingPrimaryExpression
     | havingClause                          # HavingSimpleCondition
     ;
 
-aggregateFunction
-    : COUNT
-    | SUM
-    | AVG
-    | MIN
-    | MAX
-    ;
+
 
 havingColumn
     : IDENTIFIER                                   # HavingColumnName
@@ -207,3 +201,13 @@ limitClause
 
  offsetClause
      : OFFSET NUMBER;
+
+// Common
+aggregateFunction
+    : COUNT
+    | SUM
+    | AVG
+    | MIN
+    | MAX
+    ;
+

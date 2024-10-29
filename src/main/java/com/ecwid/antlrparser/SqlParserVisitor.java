@@ -215,12 +215,6 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitHavingSimpleCondition(SqlParser.HavingSimpleConditionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#aggregateFunction}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAggregateFunction(SqlParser.AggregateFunctionContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code HavingColumnName}
 	 * labeled alternative in {@link SqlParser#havingColumn}.
 	 * @param ctx the parse tree
@@ -372,4 +366,10 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitOffsetClause(SqlParser.OffsetClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link SqlParser#aggregateFunction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAggregateFunction(SqlParser.AggregateFunctionContext ctx);
 }
