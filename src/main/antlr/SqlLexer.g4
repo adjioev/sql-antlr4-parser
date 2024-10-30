@@ -20,6 +20,8 @@ ORDERBY: 'ORDER BY';
 GROUPBY: 'GROUP BY';
 ASC: 'ASC';
 DESC: 'DESC';
+IS: 'IS';
+NULL: 'NULL';
 
 //Joins
 JOIN: 'JOIN';

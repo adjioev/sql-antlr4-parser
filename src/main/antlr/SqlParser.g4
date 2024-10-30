@@ -122,25 +122,28 @@ havingUnaryExpression
 // Handles nested expressions and simple conditions
 havingPrimaryExpression
     : '(' havingOrExpression ')'                 # HavingNestedExpr
-    | havingClause                          # HavingSimpleCondition
+    | havingClause                               # HavingSimpleCondition
     ;
-
-
 
 havingColumn
     : IDENTIFIER                                   # HavingColumnName
     | IDENTIFIER '.' IDENTIFIER                    # HavingQualifiedColumnName
     ;
 
-havingValue: NUMBER | IDENTIFIER | STRING;
 
 // Simplest form of a condition for HAVING clause, like
 // HAVING AGGREGATE_FUNCTION(column_name) OPERATOR value
 havingClause
-      : aggregateFunction'(' havingColumn ')' COMP_OPERATOR havingValue
-      ;
+    : aggregateFunction'(' havingColumn ')' COMP_OPERATOR havingValue               # HavingComparisonCondition
+    | aggregateFunction'(' havingColumn ')' LIKE havingValue                         # HavingLikeCondition
+    | aggregateFunction'(' havingColumn ')' BETWEEN havingValue AND havingValue       # HavingBetweenCondition
+    | aggregateFunction'(' havingColumn ')' IN '(' havingValueList ')'               # HavingInCondition
+    | aggregateFunction'(' havingColumn ')' IS (NOT)? NULL                         # HavingIsNullCondition
+    ;
 
+havingValue: NUMBER | IDENTIFIER | STRING;
 
+havingValueList : havingValue (',' havingValue)*;
 // ------------------ WHERE Clause ------------------
 // Just for fun, full-ish  implementation for SQL WHERE clause
 // Hiarchy - orExpression -> andExpression -> unaryExpression -> primaryExpression -> whereClause
@@ -170,17 +173,12 @@ primaryExpression
     | whereClause                          # SimpleCondition
     ;
 
-// Simplest form of a condition, like
-// column_name = value
-// column_name LIKE value
-// column_name BETWEEN value AND value
-// column_name IN (value, value, ...)
-// TODO: replace IDENTIFIER with columnName?
 whereClause
     : IDENTIFIER COMP_OPERATOR whereValue            # ComparisonCondition
     | IDENTIFIER LIKE whereValue                     # LikeCondition
     | IDENTIFIER BETWEEN whereValue AND whereValue   # BetweenCondition
     | IDENTIFIER IN '(' whereValueList ')'           # InCondition
+    | IDENTIFIER IS (NOT)? NULL                      # IsNullCondition
     ;
 
 whereValue: NUMBER | IDENTIFIER | STRING;

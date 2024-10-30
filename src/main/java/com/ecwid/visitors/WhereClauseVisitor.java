@@ -4,6 +4,10 @@ import com.ecwid.antlrparser.SqlParserBaseVisitor;
 import com.ecwid.antlrparser.SqlParser;
 import com.ecwid.query.condition.*;
 import com.ecwid.query.condition.Condition;
+import com.ecwid.query.condition.where.WhereBetweenCondition;
+import com.ecwid.query.condition.where.WhereComparisonCondition;
+import com.ecwid.query.condition.where.WhereInCondition;
+import com.ecwid.query.condition.where.WhereLikeCondition;
 
 import java.util.Arrays;
 import java.util.List;
@@ -46,14 +50,14 @@ public class WhereClauseVisitor extends SqlParserBaseVisitor<Condition> {
         String column = ctx.IDENTIFIER().getText();
         String operator = ctx.COMP_OPERATOR().getText();
         Object value = parseValue(ctx.whereValue());
-        return new ComparisonCondition(column, operator, value);
+        return new WhereComparisonCondition(column, operator, value);
     }
 
     @Override
     public Condition visitLikeCondition(SqlParser.LikeConditionContext ctx) {
         String column = ctx.IDENTIFIER().getText();
         Object value = parseValue(ctx.whereValue());
-        return new LikeCondition(column, value);
+        return new WhereLikeCondition(column, value);
     }
 
     @Override
@@ -61,7 +65,7 @@ public class WhereClauseVisitor extends SqlParserBaseVisitor<Condition> {
         String column = ctx.IDENTIFIER().getText();
         Object lower = parseValue(ctx.whereValue(0));
         Object upper = parseValue(ctx.whereValue(1));
-        return new BetweenCondition(column, lower, upper);
+        return new WhereBetweenCondition(column, lower, upper);
     }
 
     @Override
@@ -70,7 +74,7 @@ public class WhereClauseVisitor extends SqlParserBaseVisitor<Condition> {
         List<Object> values = ctx.whereValueList().whereValue().stream()
                 .map(this::parseValue)
                 .collect(Collectors.toList());
-        return new InCondition(column, values);
+        return new WhereInCondition(column, values);
     }
 
     private Object parseValue(SqlParser.WhereValueContext ctx) {

@@ -61,7 +61,6 @@ public class Query {
         joins.add(join);
     }
 
-
     // Method to get the list of selected columns
     public List<String> getColumns() {
         if (selectComponent instanceof AsteriskSelect) {
@@ -75,20 +74,46 @@ public class Query {
 
     @Override
     public String toString() {
-        return String.format("""
-                        Query{
-                            columns='%s',
-                            sources='%s',
-                            joins='%s',
-                            GroupBy='%s',
-                            Where='%s',
-                            Sort='%s',
-                            Limit='%s',
-                            Offset='%s'
-                        }""",
-                selectComponent, sourceComponent, joins, groupBy, whereComponent, sort, limit, offset
-        );
+        StringBuilder sb = new StringBuilder();
+        sb.append("Query{\n");
 
+        if (selectComponent != null) {
+            sb.append(String.format("    columns='%s',\n", selectComponent));
+        }
+        if (sourceComponent != null) {
+            sb.append(String.format("    sources='%s',\n", sourceComponent));
+        }
+        if (joins != null) {
+            sb.append(String.format("    joins='%s',\n", joins));
+        }
+        if (whereComponent != null) {
+            sb.append(String.format("    Where='%s',\n", whereComponent));
+        }
+        if (groupBy != null) {
+            sb.append(String.format("    GroupBy='%s',\n", groupBy));
+        }
+        if (havingComponent != null) {
+            sb.append(String.format("    Having='%s',\n", havingComponent));
+        }
+        if (sort != null) {
+            sb.append(String.format("    Sort='%s',\n", sort));
+        }
+        if (limit != 0) {
+            sb.append(String.format("    Limit='%s',\n", limit));
+        }
+        if (offset != 0) {
+            sb.append(String.format("    Offset='%s',\n", offset));
+        }
+
+        // Remove the last comma and newline if they exist
+        int lastCommaIndex = sb.lastIndexOf(",\n");
+        if (lastCommaIndex != -1 && lastCommaIndex == sb.length() - 2) {
+            sb.delete(lastCommaIndex, sb.length());
+        }
+
+        sb.append("\n}");
+
+        return sb.toString();
     }
 
 

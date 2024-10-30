@@ -49,6 +49,12 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
             query.setGroupBy(groupBy);
         }
 
+        if (ctx.HAVING() != null && ctx.havingOrExpression() != null) {
+            HavingClauseVisitor havingVisitor = new HavingClauseVisitor();
+            Condition havingComponent = havingVisitor.visit(ctx.havingOrExpression());
+            query.setHavingComponent(havingComponent);
+        }
+
         // ORDER BY
         if (ctx.orderByClause() != null) {
             Sort sort = new Sort();

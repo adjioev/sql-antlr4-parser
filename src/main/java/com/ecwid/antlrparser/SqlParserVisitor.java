@@ -229,17 +229,52 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitHavingQualifiedColumnName(SqlParser.HavingQualifiedColumnNameContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code HavingComparisonCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingComparisonCondition(SqlParser.HavingComparisonConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HavingLikeCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingLikeCondition(SqlParser.HavingLikeConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HavingBetweenCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingBetweenCondition(SqlParser.HavingBetweenConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HavingInCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingInCondition(SqlParser.HavingInConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code HavingIsNullCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingIsNullCondition(SqlParser.HavingIsNullConditionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link SqlParser#havingValue}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitHavingValue(SqlParser.HavingValueContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link SqlParser#havingClause}.
+	 * Visit a parse tree produced by {@link SqlParser#havingValueList}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitHavingClause(SqlParser.HavingClauseContext ctx);
+	T visitHavingValueList(SqlParser.HavingValueListContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code OrOperation}
 	 * labeled alternative in {@link SqlParser#orExpression}.
@@ -324,6 +359,13 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitInCondition(SqlParser.InConditionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code IsNullCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIsNullCondition(SqlParser.IsNullConditionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SqlParser#whereValue}.
 	 * @param ctx the parse tree

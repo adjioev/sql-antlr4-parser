@@ -378,6 +378,66 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitHavingQualifiedColumnName(SqlParser.HavingQualifiedColumnNameContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code HavingComparisonCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingComparisonCondition(SqlParser.HavingComparisonConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingComparisonCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingComparisonCondition(SqlParser.HavingComparisonConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HavingLikeCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingLikeCondition(SqlParser.HavingLikeConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingLikeCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingLikeCondition(SqlParser.HavingLikeConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HavingBetweenCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingBetweenCondition(SqlParser.HavingBetweenConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingBetweenCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingBetweenCondition(SqlParser.HavingBetweenConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HavingInCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingInCondition(SqlParser.HavingInConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingInCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingInCondition(SqlParser.HavingInConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code HavingIsNullCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingIsNullCondition(SqlParser.HavingIsNullConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingIsNullCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingIsNullCondition(SqlParser.HavingIsNullConditionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link SqlParser#havingValue}.
 	 * @param ctx the parse tree
 	 */
@@ -388,15 +448,15 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitHavingValue(SqlParser.HavingValueContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link SqlParser#havingClause}.
+	 * Enter a parse tree produced by {@link SqlParser#havingValueList}.
 	 * @param ctx the parse tree
 	 */
-	void enterHavingClause(SqlParser.HavingClauseContext ctx);
+	void enterHavingValueList(SqlParser.HavingValueListContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link SqlParser#havingClause}.
+	 * Exit a parse tree produced by {@link SqlParser#havingValueList}.
 	 * @param ctx the parse tree
 	 */
-	void exitHavingClause(SqlParser.HavingClauseContext ctx);
+	void exitHavingValueList(SqlParser.HavingValueListContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code OrOperation}
 	 * labeled alternative in {@link SqlParser#orExpression}.
@@ -541,6 +601,18 @@ public interface SqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInCondition(SqlParser.InConditionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code IsNullCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterIsNullCondition(SqlParser.IsNullConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code IsNullCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitIsNullCondition(SqlParser.IsNullConditionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SqlParser#whereValue}.
 	 * @param ctx the parse tree
