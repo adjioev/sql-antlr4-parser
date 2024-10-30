@@ -4,10 +4,7 @@ import com.ecwid.antlrparser.SqlParserBaseVisitor;
 import com.ecwid.antlrparser.SqlParser;
 import com.ecwid.query.condition.*;
 import com.ecwid.query.condition.Condition;
-import com.ecwid.query.condition.having.HavingBetweenCondition;
-import com.ecwid.query.condition.having.HavingComparisonCondition;
-import com.ecwid.query.condition.having.HavingInCondition;
-import com.ecwid.query.condition.having.HavingLikeCondition;
+import com.ecwid.query.condition.having.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -79,6 +76,14 @@ public class HavingClauseVisitor extends SqlParserBaseVisitor<Condition> {
                 .map(this::parseValue)
                 .collect(Collectors.toList());
         return new HavingInCondition(func, column, values);
+    }
+
+    @Override
+    public Condition visitHavingIsNullCondition(SqlParser.HavingIsNullConditionContext ctx) {
+        String func = ctx.aggregateFunction().getText();
+        String column = ctx.havingColumn().getText();
+        boolean isNot = ctx.NOT() != null;
+        return new HavingIsNullCondition(func, column, isNot);
     }
 
     private Object parseValue(SqlParser.HavingValueContext ctx) {

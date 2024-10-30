@@ -4,10 +4,7 @@ import com.ecwid.antlrparser.SqlParserBaseVisitor;
 import com.ecwid.antlrparser.SqlParser;
 import com.ecwid.query.condition.*;
 import com.ecwid.query.condition.Condition;
-import com.ecwid.query.condition.where.WhereBetweenCondition;
-import com.ecwid.query.condition.where.WhereComparisonCondition;
-import com.ecwid.query.condition.where.WhereInCondition;
-import com.ecwid.query.condition.where.WhereLikeCondition;
+import com.ecwid.query.condition.where.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -75,6 +72,13 @@ public class WhereClauseVisitor extends SqlParserBaseVisitor<Condition> {
                 .map(this::parseValue)
                 .collect(Collectors.toList());
         return new WhereInCondition(column, values);
+    }
+
+    @Override
+    public Condition visitIsNullCondition(SqlParser.IsNullConditionContext ctx) {
+        String column = ctx.IDENTIFIER().getText();
+        boolean isNot = ctx.NOT() != null;
+        return new WhereIsNullCondition(column, isNot);
     }
 
     private Object parseValue(SqlParser.WhereValueContext ctx) {

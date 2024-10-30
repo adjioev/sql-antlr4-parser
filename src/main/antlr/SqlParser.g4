@@ -18,14 +18,11 @@ select
       ';'?
     ;
 
-
-
 // TODO: group clauses limited to columnName and table.columnName
 groupColumn
     : IDENTIFIER                                   # GroupByColumnName
     | IDENTIFIER '.' IDENTIFIER                    # GroupByQualifiedColumnName
     ;
-
 
 // SELECT items
 selectElements
@@ -69,9 +66,6 @@ tableSource
 
 tableName
     : IDENTIFIER;
-
-
-
 
 // ------------------ JOIN Clause ------------------
 // Hiarchy - joinClause -> joinType -> tableName -> joinCondition
@@ -130,15 +124,14 @@ havingColumn
     | IDENTIFIER '.' IDENTIFIER                    # HavingQualifiedColumnName
     ;
 
-
 // Simplest form of a condition for HAVING clause, like
 // HAVING AGGREGATE_FUNCTION(column_name) OPERATOR value
 havingClause
-    : aggregateFunction'(' havingColumn ')' COMP_OPERATOR havingValue               # HavingComparisonCondition
-    | aggregateFunction'(' havingColumn ')' LIKE havingValue                         # HavingLikeCondition
+    : aggregateFunction'(' havingColumn ')' IS (NOT)? NULL                            # HavingIsNullCondition
+    | aggregateFunction'(' havingColumn ')' COMP_OPERATOR havingValue                 # HavingComparisonCondition
+    | aggregateFunction'(' havingColumn ')' LIKE havingValue                          # HavingLikeCondition
     | aggregateFunction'(' havingColumn ')' BETWEEN havingValue AND havingValue       # HavingBetweenCondition
-    | aggregateFunction'(' havingColumn ')' IN '(' havingValueList ')'               # HavingInCondition
-    | aggregateFunction'(' havingColumn ')' IS (NOT)? NULL                         # HavingIsNullCondition
+    | aggregateFunction'(' havingColumn ')' IN '(' havingValueList ')'                # HavingInCondition
     ;
 
 havingValue: NUMBER | IDENTIFIER | STRING;
@@ -174,11 +167,11 @@ primaryExpression
     ;
 
 whereClause
-    : IDENTIFIER COMP_OPERATOR whereValue            # ComparisonCondition
+    : IDENTIFIER IS (NOT)? NULL                      # IsNullCondition
+    | IDENTIFIER COMP_OPERATOR whereValue            # ComparisonCondition
     | IDENTIFIER LIKE whereValue                     # LikeCondition
     | IDENTIFIER BETWEEN whereValue AND whereValue   # BetweenCondition
     | IDENTIFIER IN '(' whereValueList ')'           # InCondition
-    | IDENTIFIER IS (NOT)? NULL                      # IsNullCondition
     ;
 
 whereValue: NUMBER | IDENTIFIER | STRING;
@@ -208,4 +201,3 @@ aggregateFunction
     | MIN
     | MAX
     ;
-

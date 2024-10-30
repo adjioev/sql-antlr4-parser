@@ -229,6 +229,13 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitHavingQualifiedColumnName(SqlParser.HavingQualifiedColumnNameContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code HavingIsNullCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingIsNullCondition(SqlParser.HavingIsNullConditionContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code HavingComparisonCondition}
 	 * labeled alternative in {@link SqlParser#havingClause}.
 	 * @param ctx the parse tree
@@ -256,13 +263,6 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitHavingInCondition(SqlParser.HavingInConditionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code HavingIsNullCondition}
-	 * labeled alternative in {@link SqlParser#havingClause}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitHavingIsNullCondition(SqlParser.HavingIsNullConditionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SqlParser#havingValue}.
 	 * @param ctx the parse tree
@@ -332,6 +332,13 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSimpleCondition(SqlParser.SimpleConditionContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code IsNullCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIsNullCondition(SqlParser.IsNullConditionContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ComparisonCondition}
 	 * labeled alternative in {@link SqlParser#whereClause}.
 	 * @param ctx the parse tree
@@ -359,13 +366,6 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitInCondition(SqlParser.InConditionContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code IsNullCondition}
-	 * labeled alternative in {@link SqlParser#whereClause}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIsNullCondition(SqlParser.IsNullConditionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link SqlParser#whereValue}.
 	 * @param ctx the parse tree

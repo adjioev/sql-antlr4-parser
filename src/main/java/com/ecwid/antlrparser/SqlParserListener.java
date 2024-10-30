@@ -378,6 +378,18 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitHavingQualifiedColumnName(SqlParser.HavingQualifiedColumnNameContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code HavingIsNullCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingIsNullCondition(SqlParser.HavingIsNullConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingIsNullCondition}
+	 * labeled alternative in {@link SqlParser#havingClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingIsNullCondition(SqlParser.HavingIsNullConditionContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code HavingComparisonCondition}
 	 * labeled alternative in {@link SqlParser#havingClause}.
 	 * @param ctx the parse tree
@@ -425,18 +437,6 @@ public interface SqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitHavingInCondition(SqlParser.HavingInConditionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code HavingIsNullCondition}
-	 * labeled alternative in {@link SqlParser#havingClause}.
-	 * @param ctx the parse tree
-	 */
-	void enterHavingIsNullCondition(SqlParser.HavingIsNullConditionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code HavingIsNullCondition}
-	 * labeled alternative in {@link SqlParser#havingClause}.
-	 * @param ctx the parse tree
-	 */
-	void exitHavingIsNullCondition(SqlParser.HavingIsNullConditionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SqlParser#havingValue}.
 	 * @param ctx the parse tree
@@ -554,6 +554,18 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitSimpleCondition(SqlParser.SimpleConditionContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code IsNullCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterIsNullCondition(SqlParser.IsNullConditionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code IsNullCondition}
+	 * labeled alternative in {@link SqlParser#whereClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitIsNullCondition(SqlParser.IsNullConditionContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ComparisonCondition}
 	 * labeled alternative in {@link SqlParser#whereClause}.
 	 * @param ctx the parse tree
@@ -601,18 +613,6 @@ public interface SqlParserListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitInCondition(SqlParser.InConditionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code IsNullCondition}
-	 * labeled alternative in {@link SqlParser#whereClause}.
-	 * @param ctx the parse tree
-	 */
-	void enterIsNullCondition(SqlParser.IsNullConditionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code IsNullCondition}
-	 * labeled alternative in {@link SqlParser#whereClause}.
-	 * @param ctx the parse tree
-	 */
-	void exitIsNullCondition(SqlParser.IsNullConditionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link SqlParser#whereValue}.
 	 * @param ctx the parse tree

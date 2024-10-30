@@ -412,6 +412,18 @@ public class SqlParserBaseListener implements SqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterHavingIsNullCondition(SqlParser.HavingIsNullConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitHavingIsNullCondition(SqlParser.HavingIsNullConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterHavingComparisonCondition(SqlParser.HavingComparisonConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -455,18 +467,6 @@ public class SqlParserBaseListener implements SqlParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitHavingInCondition(SqlParser.HavingInConditionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterHavingIsNullCondition(SqlParser.HavingIsNullConditionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitHavingIsNullCondition(SqlParser.HavingIsNullConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -592,6 +592,18 @@ public class SqlParserBaseListener implements SqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterIsNullCondition(SqlParser.IsNullConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIsNullCondition(SqlParser.IsNullConditionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterComparisonCondition(SqlParser.ComparisonConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -635,18 +647,6 @@ public class SqlParserBaseListener implements SqlParserListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitInCondition(SqlParser.InConditionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterIsNullCondition(SqlParser.IsNullConditionContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIsNullCondition(SqlParser.IsNullConditionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
