@@ -39,6 +39,8 @@ public class SelectClauseVisitor extends SqlParserBaseVisitor<SelectComponent> {
             String tableName = identifiers.get(0).getText();
             String columnName = identifiers.get(1).getText();
             return new ColumnExpression(tableName, columnName);
+        } else if (ctx instanceof SqlParser.AsteriskExprContext) {
+            return new ColumnExpression(null, "*");
         } else if (ctx instanceof SqlParser.TableAsteriskExprContext) {
             String tableName = ((SqlParser.TableAsteriskExprContext) ctx).IDENTIFIER().getText();
             return new ColumnExpression(tableName, "*");

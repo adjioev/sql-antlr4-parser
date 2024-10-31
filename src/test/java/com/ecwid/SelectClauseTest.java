@@ -36,4 +36,29 @@ public class SelectClauseTest {
         assertTrue(query.getColumns().contains("author.name"), "Query should contain 'author.name'");
         assertTrue(query.getColumns().contains("author.age"), "Query should contain 'author.age'");
     }
+
+    @Test
+    public void shouldIdentifyColumnWithAsterix() {
+        String sql = "SELECT author.* FROM author;";
+        Query query = sqlQueryService.getQueryFromSql(sql);
+        assertEquals(1, query.getColumns().size(), "There should be 1 column");
+        assertTrue(query.getColumns().contains("author.*"), "Query should contain 'author.*'");
+    }
+
+    @Test
+    public void shouldIdentigyAggregateFunctions() {
+        String sql = "SELECT COUNT(column) FROM author;";
+        Query query = sqlQueryService.getQueryFromSql(sql);
+        assertEquals(1, query.getColumns().size(), "There should be 1 column");
+        assertTrue(query.getColumns().contains("COUNT(column)"), "Query should contain 'COUNT(*)'");
+    }
+
+    @Test
+    public void shouldIdentigyAggregateFunctionsWithAsterix() {
+        String sql = "SELECT COUNT(*) FROM author;";
+        Query query = sqlQueryService.getQueryFromSql(sql);
+        assertEquals(1, query.getColumns().size(), "There should be 1 column");
+        assertTrue(query.getColumns().contains("COUNT(*)"), "Query should contain 'COUNT(*)'");
+    }
+
 }

@@ -124,6 +124,18 @@ public class SqlParserBaseListener implements SqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterAsteriskExpr(SqlParser.AsteriskExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAsteriskExpr(SqlParser.AsteriskExprContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterQualifiedColumnNameExpr(SqlParser.QualifiedColumnNameExprContext ctx) { }
 	/**
 	 * {@inheritDoc}

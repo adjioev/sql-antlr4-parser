@@ -1,3 +1,30 @@
+## Supported SQL constructs
+
+### SELECT clause
+- [x] SELECT * FROM table (asterisk)
+- [x] SELECT field1, field2 FROM table (common fields)
+- [x] SELECT field1 AS alias1, field2 AS alias2 FROM table (aliases)
+- [x] SELECT field.* FROM table (fields with asterisk)
+- [x] SELECT COUNT(field) FROM table (aggregate functions)
+- [x] SELECT SUM(*) FROM table (aggregate functions with asterisk)
+
+### FROM clause (source)
+- [x] FROM table (single table)
+- [x] FROM table1, table2 (multiple tables)
+- [x] FROM table1 JOIN table2 ON (table1.field = table2.field) (implicit join)
+- [x] FROM table1 INNER JOIN table2 ON (table1.field = table2.field) (inner join)
+- [x] FROM table1 LEFT JOIN table2 ON (table1.field = table2.field) (left join)
+- [x] FROM table1 RIGHT JOIN table2 ON (table1.field = table2.field) (right join)
+- [x] FROM table1 FULL JOIN table2 ON (table1.field = table2.field) (full join)
+- [x] FROM (SELECT * FROM table) AS alias (subquery)
+- [x] FROM (SELECT * FROM table) AS alias1 JOIN (SELECT * FROM table) AS alias2 ON (alias1.field = alias2.field) (subquery join)
+- [x] FROM table1 JOIN (SELECT * FROM table) AS alias ON (table1.field = alias.field) (join with subquery)
+- 
+#### Subqueries
+- [x] SELECT * FROM (SELECT * FROM table) AS alias (subquery)
+
+
+
 ## TODO: 
 - [x] Enumeration of sample fields explicitly (with aliases) or *
 - [x] Aggregation functions (count, sum, avg, min, max) for selected fields
@@ -5,8 +32,8 @@
 - [x] Subqueries (select * from (select * from A) a_alias)
 - [x] Explicit join of tables (inner, left, right, full join)
 - [x] Filter conditions (where a = 1 and b > 100)
-- [ ] Grouping by one or several fields (group by)
-- [ ] Having clause 
+- [x] Grouping by one or several fields (group by)
+- [x] Having clause 
 - [x] Sorting by one or more fields (order by)
 - [x] Selection truncation (limit, offset)
 

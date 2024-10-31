@@ -40,6 +40,7 @@ alias: IDENTIFIER;
 //TODO: extend for other types of expressions
 expression
     : IDENTIFIER                                   # ColumnNameExpr
+    | ASTERIX                                      # AsteriskExpr
     | IDENTIFIER '.' IDENTIFIER                    # QualifiedColumnNameExpr
     | IDENTIFIER '.' ASTERIX                       # TableAsteriskExpr
     | functionCall                                  # FunctionCallExpr

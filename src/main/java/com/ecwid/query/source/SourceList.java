@@ -1,11 +1,14 @@
 package com.ecwid.query.source;
 
+import lombok.Getter;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class SourceList implements SourceComponent {
 
-    private final List<SourceComponent> sources = new ArrayList<>();
+    public final List<SourceComponent> sources = new ArrayList<>();
 
     public void add(SourceComponent source) {
         sources.add(source);

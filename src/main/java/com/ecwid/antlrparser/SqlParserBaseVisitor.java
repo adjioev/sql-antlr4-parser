@@ -80,6 +80,13 @@ public class SqlParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> impleme
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitAsteriskExpr(SqlParser.AsteriskExprContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitQualifiedColumnNameExpr(SqlParser.QualifiedColumnNameExprContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

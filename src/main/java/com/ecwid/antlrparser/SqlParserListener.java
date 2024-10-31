@@ -108,6 +108,18 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitColumnNameExpr(SqlParser.ColumnNameExprContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code AsteriskExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterAsteriskExpr(SqlParser.AsteriskExprContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code AsteriskExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitAsteriskExpr(SqlParser.AsteriskExprContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code QualifiedColumnNameExpr}
 	 * labeled alternative in {@link SqlParser#expression}.
 	 * @param ctx the parse tree

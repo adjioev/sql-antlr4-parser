@@ -12,7 +12,7 @@ public class TableSource extends Source {
 
     public String toString() {
         if (alias != null) {
-            return tableName + " " + alias;
+            return tableName + " AS " + alias;
         }
         return tableName;
     }

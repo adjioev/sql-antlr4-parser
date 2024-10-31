@@ -70,6 +70,13 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitColumnNameExpr(SqlParser.ColumnNameExprContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code AsteriskExpr}
+	 * labeled alternative in {@link SqlParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAsteriskExpr(SqlParser.AsteriskExprContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code QualifiedColumnNameExpr}
 	 * labeled alternative in {@link SqlParser#expression}.
 	 * @param ctx the parse tree

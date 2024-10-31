@@ -7,6 +7,8 @@ public class Main {
     public static void main(String[] args) {
 
         // SQL query from the task with added WHERE clause
+        // For other possible queries see src/test/java/com/ecwid directory
+        // ando
         String sql = """
                    SELECT author.name, COUNT(book.id), SUM(book.cost)
                    FROM author
