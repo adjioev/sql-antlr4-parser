@@ -8,6 +8,9 @@ import com.ecwid.query.join.Join;
 import com.ecwid.query.select.SelectComponent;
 import com.ecwid.query.source.SourceComponent;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
 
     @Override
@@ -37,10 +40,12 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
 
         if (ctx.joinClause() != null) {
             JoinClauseVisitor joinVisitor = new JoinClauseVisitor();
+            List<Join> joins = new ArrayList<>();
             ctx.joinClause().forEach(joinCtx -> {
                 Join join = joinVisitor.visit(joinCtx);
-                query.addJoin(join);
+                joins.add(join);
             });
+            query.setJoins(joins);
         }
 
         if (ctx.GROUPBY() != null && ctx.groupByClause() != null) {

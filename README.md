@@ -11,15 +11,15 @@
 ### FROM clause (source)
 - [x] FROM table (single table)
 - [x] FROM table1, table2 (multiple tables)
+- [x] FROM (SELECT * FROM table) AS alias (subquery)
+
+### Joins
 - [x] FROM table1 JOIN table2 ON (table1.field = table2.field) (implicit join)
 - [x] FROM table1 INNER JOIN table2 ON (table1.field = table2.field) (inner join)
 - [x] FROM table1 LEFT JOIN table2 ON (table1.field = table2.field) (left join)
 - [x] FROM table1 RIGHT JOIN table2 ON (table1.field = table2.field) (right join)
 - [x] FROM table1 FULL JOIN table2 ON (table1.field = table2.field) (full join)
-- [x] FROM (SELECT * FROM table) AS alias (subquery)
-- [x] FROM (SELECT * FROM table) AS alias1 JOIN (SELECT * FROM table) AS alias2 ON (alias1.field = alias2.field) (subquery join)
-- [x] FROM table1 JOIN (SELECT * FROM table) AS alias ON (table1.field = alias.field) (join with subquery)
-- 
+
 #### Subqueries
 - [x] SELECT * FROM (SELECT * FROM table) AS alias (subquery)
 

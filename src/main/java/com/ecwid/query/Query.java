@@ -13,16 +13,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-//class Query {
-//    private List<String> columns; - SelectItem
-//    private List<Source> fromSources;
-//    private List<Join> joins;
-//    private List<WhereClause> whereClauses;
-//    private List<String> groupByColumns;
-//    private List<Sort> sortColumns;
-//    private Integer limit;
-//    private Integer offset;
-//}
 @Getter
 public class Query {
 
@@ -33,7 +23,8 @@ public class Query {
     private SourceComponent sourceComponent;
 
 
-    private final List<Join> joins = new ArrayList<>();
+    @Setter
+    private List<Join> joins;
 
     @Setter
     private Condition whereComponent;
