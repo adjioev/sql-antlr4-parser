@@ -222,6 +222,13 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitHavingSimpleCondition(SqlParser.HavingSimpleConditionContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code HavingAsterisk}
+	 * labeled alternative in {@link SqlParser#havingColumn}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitHavingAsterisk(SqlParser.HavingAsteriskContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code HavingColumnName}
 	 * labeled alternative in {@link SqlParser#havingColumn}.
 	 * @param ctx the parse tree

@@ -18,14 +18,14 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
         Query query = new Query();
 
         // SELECT
-        if (ctx.SELECT() != null  && ctx.selectElements() != null) {
+        if (ctx.SELECT() != null && ctx.selectElements() != null) {
             SelectClauseVisitor selectClauseVisitor = new SelectClauseVisitor();
             SelectComponent selectComponent = selectClauseVisitor.visit(ctx.selectElements());
             query.setSelectComponent(selectComponent);
         }
 
         // TODO: move join clause here
-        if (ctx.FROM() != null  && ctx.tableList() != null) {
+        if (ctx.FROM() != null && ctx.tableList() != null) {
             SourceClauseVisitor sourceClauseVisitor = new SourceClauseVisitor();
             SourceComponent sourceComponent = sourceClauseVisitor.visit(ctx.tableList());
             query.setSourceComponent(sourceComponent);
@@ -69,7 +69,7 @@ public class SqlQueryVisitor extends SqlParserBaseVisitor<Query> {
                 sort.setOrder(order);
             }
             for (SqlParser.OrderColumnContext orderColumnCtx : orderByCtx.orderColumn()) {
-                sort.addColumn( orderColumnCtx.getText());
+                sort.addColumn(orderColumnCtx.getText());
             }
             query.setSort(sort);
         }

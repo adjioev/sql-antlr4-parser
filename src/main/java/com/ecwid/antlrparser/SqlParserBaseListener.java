@@ -400,6 +400,18 @@ public class SqlParserBaseListener implements SqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterHavingAsterisk(SqlParser.HavingAsteriskContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitHavingAsterisk(SqlParser.HavingAsteriskContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterHavingColumnName(SqlParser.HavingColumnNameContext ctx) { }
 	/**
 	 * {@inheritDoc}

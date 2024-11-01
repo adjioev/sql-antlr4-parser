@@ -121,7 +121,8 @@ havingPrimaryExpression
     ;
 
 havingColumn
-    : IDENTIFIER                                   # HavingColumnName
+    : ASTERIX                                      # HavingAsterisk
+    | IDENTIFIER                                   # HavingColumnName
     | IDENTIFIER '.' IDENTIFIER                    # HavingQualifiedColumnName
     ;
 

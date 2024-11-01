@@ -13,7 +13,7 @@ public class Main {
                    SELECT author.name, COUNT(book.id), SUM(book.cost)
                    FROM author
                    LEFT JOIN book ON author.id = book.author_id
-                   WHERE age > 30
+                   WHERE age > 30 OR age < 20
                    GROUP BY author.name
                    HAVING COUNT(book.id) > 1 AND SUM(book.cost) > 500
                    LIMIT 10;

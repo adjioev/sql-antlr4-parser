@@ -366,6 +366,18 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitHavingSimpleCondition(SqlParser.HavingSimpleConditionContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code HavingAsterisk}
+	 * labeled alternative in {@link SqlParser#havingColumn}.
+	 * @param ctx the parse tree
+	 */
+	void enterHavingAsterisk(SqlParser.HavingAsteriskContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code HavingAsterisk}
+	 * labeled alternative in {@link SqlParser#havingColumn}.
+	 * @param ctx the parse tree
+	 */
+	void exitHavingAsterisk(SqlParser.HavingAsteriskContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code HavingColumnName}
 	 * labeled alternative in {@link SqlParser#havingColumn}.
 	 * @param ctx the parse tree
