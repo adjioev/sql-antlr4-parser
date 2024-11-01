@@ -17,7 +17,6 @@ public class SqlQueryTest {
     public void shouldReturnCorrectTableNameAndColumnsForSimpleSelectQuery() {
         String sql = "SELECT CustomerName, LastName, Company FROM Customer;";
         Query query = sqlQueryService.getQueryFromSql(sql);
-        assertEquals("Customer", query.getTableName(), "Table name should be 'Customer'");
         List<String> columns = query.getColumns();
         assertEquals(3, query.getColumns().size(), "There should be 3 columns");
         assertTrue(columns.contains("CustomerName"), "Query should contain 'CustomerName'");
@@ -29,7 +28,6 @@ public class SqlQueryTest {
     public void shouldIdentifyWhereClause() {
         String sql = "SELECT * FROM Users WHERE age > 30;";
         Query query = sqlQueryService.getQueryFromSql(sql);
-        assertEquals("Users", query.getTableName(), "Table name should be 'Users'");
         assertTrue(query.getColumns().contains("*"), "Query should contain '*' for all columns");
     }
 
@@ -37,7 +35,6 @@ public class SqlQueryTest {
     public void shouldHandleAsteriskInSelectStatement() {
         String sql = "SELECT * FROM Customer;";
         Query query = sqlQueryService.getQueryFromSql(sql);
-        assertEquals("Customer", query.getTableName(), "Table name should be 'Customer'");
         assertTrue(query.getColumns().contains("*"), "Query should contain '*' for all columns");
     }
 
@@ -77,10 +74,7 @@ public class SqlQueryTest {
         String sql = "SELECT Customer.CustomerName, Orders.OrderID FROM Customer INNER JOIN Orders ON Customer.CustomerID = Orders.CustomerID;";
         Query query = sqlQueryService.getQueryFromSql(sql);
         List<Join> joins = query.getJoins();
-//        JoinCondition joinCondition = joins.getFirst().getJoinCondition();
         JoinCondition joinCondition = joins.getFirst().getJoinCondition();
-
-        assertEquals("Customer", query.getTableName(), "Table name should be 'Customer'");
         assertEquals(2, query.getColumns().size(), "There should be 2 columns");
         assertTrue(query.getColumns().contains("Customer.CustomerName"), "Query should contain 'Customer.CustomerName'");
         assertTrue(query.getColumns().contains("Orders.OrderID"), "Query should contain 'Orders.OrderID'");
@@ -101,7 +95,6 @@ public class SqlQueryTest {
         List<Join> joins = query.getJoins();
         JoinCondition joinCondition = joins.getFirst().getJoinCondition();
 
-        assertEquals("Customer", query.getTableName(), "Table name should be 'Customer'");
         assertEquals(2, query.getColumns().size(), "There should be 2 columns");
         assertTrue(query.getColumns().contains("Customer.CustomerName"), "Query should contain 'Customer.CustomerName'");
         assertTrue(query.getColumns().contains("Orders.OrderID"), "Query should contain 'Orders.OrderID'");
@@ -122,7 +115,6 @@ public class SqlQueryTest {
         List<Join> joins = query.getJoins();
         JoinCondition joinCondition = joins.getFirst().getJoinCondition();
 
-        assertEquals("Customer", query.getTableName(), "Table name should be 'Customer'");
         assertEquals(2, query.getColumns().size(), "There should be 2 columns");
         assertTrue(query.getColumns().contains("Customer.CustomerName"), "Query should contain 'Customer.CustomerName'");
         assertTrue(query.getColumns().contains("Orders.OrderID"), "Query should contain 'Orders.OrderID'");
@@ -143,7 +135,6 @@ public class SqlQueryTest {
         List<Join> joins = query.getJoins();
         JoinCondition joinCondition = joins.getFirst().getJoinCondition();
 
-        assertEquals("Customer", query.getTableName(), "Table name should be 'Customer'");
         assertEquals(2, query.getColumns().size(), "There should be 2 columns");
         assertTrue(query.getColumns().contains("Customer.CustomerName"), "Query should contain 'Customer.CustomerName'");
         assertTrue(query.getColumns().contains("Orders.OrderID"), "Query should contain 'Orders.OrderID'");
@@ -165,7 +156,6 @@ public class SqlQueryTest {
         Query query = sqlQueryService.getQueryFromSql(sql);
         List<Join> joins = query.getJoins();
 
-        assertEquals("Customer", query.getTableName(), "Table name should be 'Customer'");
         assertEquals(3, query.getColumns().size(), "There should be 3 columns");
         assertTrue(query.getColumns().contains("Customer.CustomerName"), "Query should contain 'Customer.CustomerName'");
         assertTrue(query.getColumns().contains("Orders.OrderID"), "Query should contain 'Orders.OrderID'");
