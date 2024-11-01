@@ -53,6 +53,10 @@
 #### Subqueries
 - [x] SELECT * FROM (SELECT * FROM table) AS alias (subquery)
 
+#### TODO:
+- [ ] Support exceptions for invalid SQL queries (not done)
+
+
 ## SQL Query Parser min requirements: 
 - [x] Enumeration of sample fields explicitly (with aliases) or *
 - [x] Aggregation functions (count, sum, avg, min, max) for selected fields
