@@ -5,6 +5,12 @@ import com.ecwid.query.condition.ComparisonCondition;
 public record WhereComparisonCondition(String column, String operator, Object value) implements ComparisonCondition {
     @Override
     public String toString() {
-        return column + " " + operator + " " + value;
+        String valueStr;
+        if (value instanceof String) {
+            valueStr = "'" + value + "'";
+        } else {
+            valueStr = value.toString();
+        }
+        return column + " " + operator + " " + valueStr;
     }
 }
