@@ -24,6 +24,39 @@ solving the task.
 - _Main.java_ class contains SQL from the task description and demonstrates how to use the parser. I also added "WHERE" clause to increase complexity.
 - I haven't done much work on the error handling, let me know if you want me to add it.
 
+## Code demo
+```java
+        String sql = """
+           SELECT author.name, COUNT(book.id), SUM(book.cost)
+           FROM author
+           LEFT JOIN book ON author.id = book.author_id
+           WHERE age > 30 OR age < 20
+           GROUP BY author.name
+           HAVING COUNT(book.id) > 1 AND SUM(book.cost) > 500
+           LIMIT 10;
+        """;
+
+SqlQueryService sqlQueryService = new SqlQueryService();
+Query query = sqlQueryService.getQueryFromSql(sql);
+System.out.println(query);
+```
+
+Output for `System.out.println(query);`
+```
+Query{
+    columns='author.name, COUNT(book.id), SUM(book.cost)',
+    sources='author',
+    joins='[LEFT JOIN book ON author.id = book.author_id]',
+    Where='(age > 30 OR age < 20)',
+    GroupBy='GroupBy{
+    columns='[author.name]',
+}',
+    Having='(COUNT(book.id) > 1 AND SUM(book.cost) > 500)',
+    Limit='10'
+}
+```
+
+
 ## Supported SQL constructs
 
 ### SELECT clause
