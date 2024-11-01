@@ -8,49 +8,30 @@ import com.ecwid.query.select.SelectList;
 import com.ecwid.query.source.SourceComponent;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+@Setter
 @Getter
 public class Query {
 
-    @Setter
     private SelectComponent selectComponent;
 
-    @Setter
     private SourceComponent sourceComponent;
 
-
-    @Setter
     private List<Join> joins;
 
-    @Setter
     private Condition whereComponent;
 
-    @Setter
     private Condition havingComponent;
 
-    //TODO: delete this, temp solution
-    @Setter
-    private String tableName;
-
-    @Setter
     private GroupBy groupBy;
 
-    @Setter
     private Sort sort;
 
-    @Setter
     private int limit;
 
-    @Setter
     private int offset;
-
-    public void addJoin(Join join) {
-        joins.add(join);
-    }
 
     // Method to get the list of selected columns
     public List<String> getColumns() {
