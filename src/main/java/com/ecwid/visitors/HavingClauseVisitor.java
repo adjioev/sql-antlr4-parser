@@ -15,7 +15,7 @@ public class HavingClauseVisitor extends SqlParserBaseVisitor<Condition> {
     @Override
     public Condition visitHavingOrOperation(SqlParser.HavingOrOperationContext ctx) {
         Condition left = visit(ctx.havingOrExpression());
-        Condition right = visit(ctx.havingOrExpression());
+        Condition right = visit(ctx.havingAndExpression());
         return new OrCondition(Arrays.asList(left, right));
     }
 
