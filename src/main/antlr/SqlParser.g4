@@ -71,18 +71,20 @@ tableName
 // ------------------ JOIN Clause ------------------
 // Hiarchy - joinClause -> joinType -> tableName -> joinCondition
 joinClause
-    : joinType tableName ON joinCondition
+    : joinType JOIN tableName joinCondition?
     ;
 
 joinType
-    : INNER JOIN
-    | LEFT JOIN
-    | RIGHT JOIN
-    | FULL  OUTER JOIN
+    : INNER
+    | LEFT
+    | RIGHT
+    | FULL OUTER
+    | CROSS
+    | NATURAL
     ;
 
 joinCondition
-    : joinElements COMP_OPERATOR joinElements
+    : ON joinElements COMP_OPERATOR joinElements
     ;
 
 joinElements

@@ -2,6 +2,9 @@ package com.ecwid.visitors;
 
 import com.ecwid.antlrparser.SqlParser;
 import com.ecwid.antlrparser.SqlParserBaseVisitor;
+import com.ecwid.query.expression.ColumnExpression;
+import com.ecwid.query.expression.Expression;
+import com.ecwid.query.expression.FunctionCallExpression;
 import com.ecwid.query.select.*;
 import org.antlr.v4.runtime.tree.TerminalNode;
 

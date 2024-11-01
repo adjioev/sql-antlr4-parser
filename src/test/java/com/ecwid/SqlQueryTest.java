@@ -2,7 +2,7 @@ package com.ecwid;
 
 import com.ecwid.query.Query;
 import com.ecwid.query.join.Join;
-import com.ecwid.query.join.JoinCondition;
+import com.ecwid.query.condition.JoinCondition;
 import com.ecwid.sqlparser.SqlQueryService;
 import org.junit.jupiter.api.Test;
 
@@ -77,6 +77,7 @@ public class SqlQueryTest {
         String sql = "SELECT Customer.CustomerName, Orders.OrderID FROM Customer INNER JOIN Orders ON Customer.CustomerID = Orders.CustomerID;";
         Query query = sqlQueryService.getQueryFromSql(sql);
         List<Join> joins = query.getJoins();
+//        JoinCondition joinCondition = joins.getFirst().getJoinCondition();
         JoinCondition joinCondition = joins.getFirst().getJoinCondition();
 
         assertEquals("Customer", query.getTableName(), "Table name should be 'Customer'");

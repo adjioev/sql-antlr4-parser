@@ -1,4 +1,4 @@
-package com.ecwid.query.select;
+package com.ecwid.query.expression;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,4 +1,4 @@
-package com.ecwid.query.select;
+package com.ecwid.query.expression;
 
 /**
  * @param tableName  Optional, can be null if unqualified

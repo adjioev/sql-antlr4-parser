@@ -1,5 +1,7 @@
 package com.ecwid.query.select;
 
+import com.ecwid.query.expression.Expression;
+
 import java.util.List;
 
 public record SelectList(List<SelectElement> elements) implements SelectComponent {

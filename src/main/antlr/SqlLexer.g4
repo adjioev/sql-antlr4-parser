@@ -30,6 +30,8 @@ LEFT: 'LEFT';
 RIGHT: 'RIGHT';
 FULL: 'FULL';
 OUTER: 'OUTER';
+CROSS: 'CROSS';
+NATURAL: 'NATURAL';
 ON: 'ON';
 
 // Aggregates
