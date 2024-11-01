@@ -1,3 +1,29 @@
+## Abstract (notes for reviewer)
+
+This project is a SQL query parser that can parse a SQL query and represent it as a class.
+
+There were several ways to implement this project, here some of them that I considered:
+- Go nuts with regular expressions and try to parse the query manually. Bad idea - SQL is a complex language 
+  and regular expressions are not powerful enough to parse it. It might be easy at first, but it we will end up with spaghetti code at the end.
+- _JSqlParser_ is a SQL parser that can parse SQL queries and represent them as a class. It is a good choice for this kind of task, 
+  but I guess it's what we have to crack in this project, so I considered it as a cheating.
+- Use a parser generator like _ANTLR_ or _JavaCC_ to generate a parser for SQL queries. Looks like _ANTLR_ is the most popular choice for this kind of task, 
+  _JavaCC_ is a bit older and less popular but might be a good choice too.
+
+**Conclusion**: I picked _Antlr4_ to generate a parser for SQL queries. It is a powerful tool that can generate a parser for a wide range of languages. It used
+in multiple Apache projects and has "enterprise" feel.  I guess this is the best balance for learning something **new** and **useful** and at the same time 
+solving the task.
+
+## About Project
+- Java 21, Gradle, Antlr4
+- Antlr grammar file is located in `src/main/antlr4/SqlQuery.g4`. To rebuild run _rebuildAntlr_ gradle task. It will rebuild lexer and parser help classes 
+  into _/src/main/java/com/ecwid/antlrparser_ directory.
+- Antlr uses visitor pattern to traverse the parse tree. Custom visitor classes can be found in /sr/main/java/com/ecwid/visitors directory.
+- _/src/main/java/com/ecwid/query_ contains Query class that represents SQL query. 
+- _/src/test directory contains tests for the parser with the vast amount of test cases for different SQL clauses.
+- _Main.java_ class contains SQL from the task description and demonstrates how to use the parser. I also added "WHERE" clause to increase complexity.
+- I haven't done much work on the error handling, let me know if you want me to add it.
+
 ## Supported SQL constructs
 
 ### SELECT clause
@@ -68,6 +94,8 @@
 - [x] Having clause 
 - [x] Sorting by one or more fields (order by)
 - [x] Selection truncation (limit, offset)
+
+-------------------
 
 # SQL Query Parser
 SQL query parser
