@@ -13,19 +13,47 @@
 - [x] FROM table1, table2 (multiple tables)
 - [x] FROM (SELECT * FROM table) AS alias (subquery)
 
-### Joins
-- [x] FROM table1 JOIN table2 ON (table1.field = table2.field) (implicit join)
-- [x] FROM table1 INNER JOIN table2 ON (table1.field = table2.field) (inner join)
-- [x] FROM table1 LEFT JOIN table2 ON (table1.field = table2.field) (left join)
-- [x] FROM table1 RIGHT JOIN table2 ON (table1.field = table2.field) (right join)
-- [x] FROM table1 FULL JOIN table2 ON (table1.field = table2.field) (full join)
+### WHERE clause
+- [x] Comparison operators: =, <>, >, <, >=, <=
+- [x] Logical operators: AND, OR, NOT and combinations
+- [x] Parentheses for grouping conditions
+- [x] IN operator
+- [x] BETWEEN operator
+- [x] LIKE operator
+- [x] IS NULL operator
+- [x] IS NOT NULL operator
+- 
+### JOINs
+- [x] INNER, LEFT, RIGHT, FULL OUTER, CROSS, NATURAL Joins
+- [ ] AND and OR conditions in JOIN clause (not done)
+- [ ] USING clause (not done)
+
+### GROUP BY clause
+- [x] GROUP BY field1, field2 (single and multiple fields)
+- [ ] Group by expressions (not done)
+ 
+### HAVING clause
+- [x] Aggregate functions in HAVING clause (COUNT, SUM, AVG, MIN, MAX)
+- [x] Logical operators: AND, OR, NOT and combinations
+- [x] Parentheses for grouping conditions
+- [x] Comparison operators: =, <>, >, <, >=, <=
+- [x] IN operator
+- [x] BETWEEN operator
+- [x] LIKE operator
+- [x] IS NULL operator
+- [x] IS NOT NULL operator
+
+### ORDER BY clause
+- [x] ORDER BY field1, field2 (single and multiple fields)
+
+### LIMIT and OFFSET
+- [x] LIMIT clause
+- [x] OFFSET clause
 
 #### Subqueries
 - [x] SELECT * FROM (SELECT * FROM table) AS alias (subquery)
 
-
-
-## TODO: 
+## SQL Query Parser min requirements: 
 - [x] Enumeration of sample fields explicitly (with aliases) or *
 - [x] Aggregation functions (count, sum, avg, min, max) for selected fields
 - [x] Implicit join of several tables (select * from A,B,C)
@@ -37,7 +65,7 @@
 - [x] Sorting by one or more fields (order by)
 - [x] Selection truncation (limit, offset)
 
-## SQL Query Parser
+# SQL Query Parser
 SQL query parser
 
 In SQL, the most syntactically complex and tricky query is probably the SELECT query. It has explicit and implicit joins, groupings,

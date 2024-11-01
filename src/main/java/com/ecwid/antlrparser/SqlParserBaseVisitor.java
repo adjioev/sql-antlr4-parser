@@ -31,14 +31,14 @@ public class SqlParserBaseVisitor<T> extends AbstractParseTreeVisitor<T> impleme
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitGroupByColumnName(SqlParser.GroupByColumnNameContext ctx) { return visitChildren(ctx); }
+	@Override public T visitGroupColumn(SqlParser.GroupColumnContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitGroupByQualifiedColumnName(SqlParser.GroupByQualifiedColumnNameContext ctx) { return visitChildren(ctx); }
+	@Override public T visitColumnName(SqlParser.ColumnNameContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

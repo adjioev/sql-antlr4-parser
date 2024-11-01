@@ -20,8 +20,11 @@ select
 
 // TODO: group clauses limited to columnName and table.columnName
 groupColumn
-    : IDENTIFIER                                   # GroupByColumnName
-    | IDENTIFIER '.' IDENTIFIER                    # GroupByQualifiedColumnName
+    : columnName
+    ;
+
+columnName
+    : IDENTIFIER ('.' IDENTIFIER)?
     ;
 
 // SELECT items

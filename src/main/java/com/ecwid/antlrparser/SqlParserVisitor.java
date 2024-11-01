@@ -23,19 +23,17 @@ public interface SqlParserVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelect(SqlParser.SelectContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code GroupByColumnName}
-	 * labeled alternative in {@link SqlParser#groupColumn}.
+	 * Visit a parse tree produced by {@link SqlParser#groupColumn}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitGroupByColumnName(SqlParser.GroupByColumnNameContext ctx);
+	T visitGroupColumn(SqlParser.GroupColumnContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code GroupByQualifiedColumnName}
-	 * labeled alternative in {@link SqlParser#groupColumn}.
+	 * Visit a parse tree produced by {@link SqlParser#columnName}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitGroupByQualifiedColumnName(SqlParser.GroupByQualifiedColumnNameContext ctx);
+	T visitColumnName(SqlParser.ColumnNameContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code AsteriskSelect}
 	 * labeled alternative in {@link SqlParser#selectElements}.

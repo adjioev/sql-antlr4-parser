@@ -40,25 +40,25 @@ public class SqlParserBaseListener implements SqlParserListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGroupByColumnName(SqlParser.GroupByColumnNameContext ctx) { }
+	@Override public void enterGroupColumn(SqlParser.GroupColumnContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGroupByColumnName(SqlParser.GroupByColumnNameContext ctx) { }
+	@Override public void exitGroupColumn(SqlParser.GroupColumnContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterGroupByQualifiedColumnName(SqlParser.GroupByQualifiedColumnNameContext ctx) { }
+	@Override public void enterColumnName(SqlParser.ColumnNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitGroupByQualifiedColumnName(SqlParser.GroupByQualifiedColumnNameContext ctx) { }
+	@Override public void exitColumnName(SqlParser.ColumnNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

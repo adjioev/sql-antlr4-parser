@@ -28,29 +28,25 @@ public interface SqlParserListener extends ParseTreeListener {
 	 */
 	void exitSelect(SqlParser.SelectContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code GroupByColumnName}
-	 * labeled alternative in {@link SqlParser#groupColumn}.
+	 * Enter a parse tree produced by {@link SqlParser#groupColumn}.
 	 * @param ctx the parse tree
 	 */
-	void enterGroupByColumnName(SqlParser.GroupByColumnNameContext ctx);
+	void enterGroupColumn(SqlParser.GroupColumnContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code GroupByColumnName}
-	 * labeled alternative in {@link SqlParser#groupColumn}.
+	 * Exit a parse tree produced by {@link SqlParser#groupColumn}.
 	 * @param ctx the parse tree
 	 */
-	void exitGroupByColumnName(SqlParser.GroupByColumnNameContext ctx);
+	void exitGroupColumn(SqlParser.GroupColumnContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code GroupByQualifiedColumnName}
-	 * labeled alternative in {@link SqlParser#groupColumn}.
+	 * Enter a parse tree produced by {@link SqlParser#columnName}.
 	 * @param ctx the parse tree
 	 */
-	void enterGroupByQualifiedColumnName(SqlParser.GroupByQualifiedColumnNameContext ctx);
+	void enterColumnName(SqlParser.ColumnNameContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code GroupByQualifiedColumnName}
-	 * labeled alternative in {@link SqlParser#groupColumn}.
+	 * Exit a parse tree produced by {@link SqlParser#columnName}.
 	 * @param ctx the parse tree
 	 */
-	void exitGroupByQualifiedColumnName(SqlParser.GroupByQualifiedColumnNameContext ctx);
+	void exitColumnName(SqlParser.ColumnNameContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code AsteriskSelect}
 	 * labeled alternative in {@link SqlParser#selectElements}.
